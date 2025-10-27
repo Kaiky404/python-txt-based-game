@@ -1,0 +1,45 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# --- Virtual environment ---
+.venv/
+env/
+venv/
+ENV/
+*.env
+*.venv
+
+# --- VS Code ---
+.vscode/
+.history/
+
+# --- Sistema operacional ---
+.DS_Store
+Thumbs.db
+
+# --- Arquivos temporários e logs ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.~lock*
+*.cache
+*.pid
+
+# --- Arquivos pessoais ou de anotações ---
+paraFazer.txt
+
+# --- Outros ---
+__init__.pyc
+*.zip
+*.tar.gz
+*.rar
