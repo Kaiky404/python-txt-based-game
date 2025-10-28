@@ -5,7 +5,7 @@ DEFAULT_ATRIBUTES = {
     "intimidation": 0
 }
 
-DEFAULT_INVENTORY = ["favorite long-sleeve shirt"]
+DEFAULT_INVENTORY = []
 
 ITEM_BONUSES = { 
     "favorite long-sleeve shirt": {
@@ -71,7 +71,8 @@ VISITED_PLACES_DEFAULT = {
         "visited": False,
         "broken_door": False,
         "w_u_d_tanktop_taken": False,
-        "g_l_blazer_taken": False
+        "g_l_blazer_taken": False,
+        "wood_plank_taken": False
     },
     "under_bed": {
         "visited": False,
