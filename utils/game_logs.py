@@ -1,5 +1,6 @@
-from ..assets.colors import C
-from ..character import inv, stat, bonus
+from ..core import C
+from ..assets.data import inv, bonus, stat
+
 LAST_LOG_HEAD = None
 
 def head(type: str):

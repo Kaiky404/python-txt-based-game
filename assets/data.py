@@ -89,3 +89,7 @@ VISITED_PLACES_DEFAULT = {
         "stable_seen": False
     }
 }
+
+stat = DEFAULT_ATRIBUTES.copy()
+inv = DEFAULT_INVENTORY.copy()
+bonus = ITEM_BONUSES.copy()

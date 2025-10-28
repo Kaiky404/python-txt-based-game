@@ -1,18 +1,20 @@
-from .core import C, helpers, game_logs, visited_places
-
+from .core import C, helpers, game_logs, visited_places, display_stats, set_char
+from .utils.helpers import retry_on_inventory
+from . import player
 
 #GAME FLOW
-@helpers.retry_on_inventory
+@retry_on_inventory
 def main_choice_loop():
     game_logs.head('dev message')
     print(F"{C.BLUE}Welcome to the beta of THE VILLAGE!")
     print(F"{C.BLUE}This is a text-based adventure game where your choices shape the story.")
 
     game_logs.head('question')
-    char = helpers.choice(f"{C.MAGENTA}First, what is your character's first name? {C.NORMAL}").lower().capitalize()
+    set_char()
+    print(f"You are {player.char}...")
 
     game_logs.head('narrator')
-    print(f"You are {C.MAGENTA}{char}{C.NORMAL}, a 19-year-old who lives in a village that is {C.RED}connected to the outside world by a famous crossroads.")
+    print(f"You are {C.MAGENTA}{player.char}{C.NORMAL}, a 19-year-old who lives in a village that is {C.RED}connected to the outside world by a famous crossroads.")
     print(F"Your parents are local farmers, {C.RED}Robert {C.NORMAL}and {C.RED}Martha{C.NORMAL}. They are {C.RED}children of the village founders{C.NORMAL}. You have no brothers or sisters.")
     print("You wake up in your bed, the sun is rising at your window. And with that, the sound of the students passing by your house.")
     print(f"On your nightstand you have your {C.YELLOW}favorite shirt{C.NORMAL}, you keep it in your inventory")
@@ -23,6 +25,9 @@ def main_choice_loop():
         print("2. Look at the window.")
         print("3. Look around your room.")
         MainChoice = helpers.choice(f"{C.MAGENTA}Enter the number of your choice: {C.NORMAL}")
+
+        if MainChoice is None:
+            continue
 
         if MainChoice == "1":
             game_logs.head('narrator')
@@ -36,12 +41,14 @@ def main_choice_loop():
 
         elif MainChoice == "2":
             look_window_choice()
+            pass
 
         elif MainChoice == "3":
-            look_room_choice(char)
+            look_room_choice()
+            pass
 
         else:
-            print("Invalid choice! Please enter 1, 2 or 3.")
+            print
 
 @helpers.retry_on_inventory
 def look_window_choice():
