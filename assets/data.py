@@ -5,10 +5,10 @@ DEFAULT_ATRIBUTES = {
     "intimidation": 0
 }
 
-DEFAULT_INVENTORY = ["Favorite long-sleeve shirt"]
+DEFAULT_INVENTORY = ["favorite long-sleeve shirt"]
 
 ITEM_BONUSES = { 
-    "Favorite long-sleeve shirt": {
+    "favorite long-sleeve shirt": {
         "charisma": -1,
         "bravery": 1,
         "intimidation": -1,
@@ -16,7 +16,7 @@ ITEM_BONUSES = {
         "is_equippable": True,
         "is_equipped": False
     },
-    "Well-used dark tanktop": {
+    "well-used dark tanktop": {
         "charisma": -1,
         "bravery": 0,
         "intimidation": 1,
@@ -24,7 +24,7 @@ ITEM_BONUSES = {
         "is_equippable": True,
         "is_equipped": False
     },
-    "Good-looking blazer": {
+    "good-looking blazer": {
         "charisma": 1,
         "bravery": 0,
         "intimidation": -1,
@@ -32,7 +32,7 @@ ITEM_BONUSES = {
         "is_equippable": True,
         "is_equipped": False
     },
-    "Rusty kitchen knife": {
+    "rusty kitchen knife": {
         "charisma": 0,
         "bravery": 0,
         "intimidation": 1,
@@ -40,7 +40,7 @@ ITEM_BONUSES = {
         "is_equippable": True,
         "is_equipped": False
     },
-    "Hair clip": {
+    "hair clip": {
         "charisma": 0,
         "bravery": 0,
         "intimidation": 0,
@@ -48,7 +48,7 @@ ITEM_BONUSES = {
         "is_equippable": False,
         "is_equipped": False
     },
-    "Key with a feather attached": {
+    "key with a feather attached": {
         "charisma": 0,
         "bravery": 0,
         "intimidation": 0,
@@ -56,7 +56,7 @@ ITEM_BONUSES = {
         "is_equippable": False,
         "is_equipped": False
     },
-    "Wood plank": {
+    "wood plank": {
         "charisma": 0,
         "bravery": 1,
         "intimidation": 0,

@@ -1,9 +1,7 @@
-from .assets.data import ITEM_BONUSES, DEFAULT_ATRIBUTES, DEFAULT_INVENTORY
-from .assets.colors import C
-
-stat = DEFAULT_ATRIBUTES.copy()
-inv = DEFAULT_INVENTORY.copy()
-bonus = ITEM_BONUSES.copy()
+from .core import stat_b, inv_b, bonus_b, C
+stat = stat_b.copy()
+inv = inv_b.copy()
+bonus = bonus_b.copy()
 
 # Calculate bonuses from inventory
 def calc_bonuses(stat_name):

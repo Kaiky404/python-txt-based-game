@@ -1,9 +1,15 @@
 from ..assets.colors import C
 from ..character import inv, stat, bonus
+LAST_LOG_HEAD = None
 
 def head(type: str):
-        print("\n------------------------------------------------------------")
-        print(f"[{type.upper()}]\n")
+        global LAST_LOG_HEAD
+
+        if type.upper() != LAST_LOG_HEAD:
+            print("\n------------------------------------------------------------")
+            print(f"[{type.upper()}]\n")
+
+            LAST_LOG_HEAD = type.upper()
 
 def damage(char, amount: int, reason: str):
     head('damage')
