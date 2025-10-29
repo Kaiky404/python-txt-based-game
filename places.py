@@ -1,6 +1,7 @@
 from .core import C, helpers, game_logs, visited_places, display_stats, set_char
 from .utils.helpers import retry_on_inventory
 from . import player
+from .visuals import jose_normal, jose_angry, jose_happy, maria_normal, jose_and_maria
 
 #GAME FLOW
 @retry_on_inventory
@@ -13,8 +14,9 @@ def main_choice_loop():
     set_char()
 
     game_logs.head('narrador')
-    print(f"Você é {C.MAGENTA}{player.char}{C.NORMAL}, um jovem de 19 anos que vive em um {C.RED}vilarejo conectado ao mundo exterior por um cruzamento famoso.")
-    print(F"Seus pais são os fazendeiros locais, {C.RED}José {C.NORMAL}e {C.RED}Maria{C.NORMAL}. Eles são {C.RED}filhos dos fundadores do vilarejo{C.NORMAL}. Você não tem nenhum outro parente.")
+    print(f"Você é {C.MAGENTA}{player.char}{C.NORMAL}, um jovem de 19 anos que vive em um {C.YELLOW}vilarejo conectado ao mundo exterior por um cruzamento famoso.")
+    print(F"Seus pais são os fazendeiros locais, {C.YELLOW}José {C.NORMAL}e {C.YELLOW}Maria{C.NORMAL}. Eles são {C.YELLOW}filhos dos fundadores do vilarejo{C.NORMAL}. Você não tem nenhum outro parente.")
+    print(jose_and_maria)
     print("Você acorda em sua cama, o sol está aparecendo em sua janela. E com isso, o som dos estudantes passando pela sua casa")
     print(f"No seu criado mudo você vê sua {C.YELLOW}camisa favorita{C.NORMAL}")
     game_logs.add_item(player.char, "favorite long-sleeve shirt")
