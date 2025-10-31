@@ -2,7 +2,7 @@ from functools import wraps
 from ..assets.colors import C
 from ..character import inventory_menu
 from .. import player
-
+from .game_logs import head, erro
 
 class InventoryInterrupt(Exception):
     pass
@@ -25,3 +25,18 @@ def choice(prompt):
             inventory_menu(player.char)
             return None
         return user_input.lower()
+    
+def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
+    while True:
+        head(escolha_acao_dialogo)
+        situação_formatada = ', '.join(situação)
+        print(f"você pode ver {situação_formatada}, DIGITE o que você irá fazer.")
+        for opcao in opcoes:
+            print(f"> '{opcao}'")
+        
+        escolha = choice(">> ")
+        if escolha in opcoes:
+            return escolha
+        else:
+            erro()
+            continue

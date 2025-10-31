@@ -1,5 +1,6 @@
 from .core import C, helpers, game_logs, visited_places, display_stats, set_char
 from .utils.helpers import retry_on_inventory
+from .lugar.core import janela
 from . import player
 from .visuals import jose, maria, char
 
@@ -90,7 +91,7 @@ def main_choice_loop():
                 print("Em alguma atualização futura, adicionar mais interações na floresta. DEADENDLINE")
 
         elif MainChoice == "olhar pela janela":
-            look_window_choice()
+            janela()
             pass
 
         elif MainChoice == "procurar algo pelo quarto":
@@ -100,141 +101,6 @@ def main_choice_loop():
         else:
             print("Escolha inválida. Tente novamente.")
 
-@helpers.retry_on_inventory
-def look_window_choice():
-    if visited_places['window']['visited']:
-        game_logs.head('info')
-        print("Você já olhou todos os pontos interessantes da janela.")
-        return
-    
-    game_logs.head('narrador')
-    print("Você se encosta no peitoril da janela")
-    while True:
-        print(f"À frente, três pontos chamam atenção: o{C.YELLOW} estábulo{C.NORMAL}, o {C.YELLOW}parquinho enferrujado{C.NORMAL}, e um {C.YELLOW}prédio grande{C.NORMAL}.")
-        
-        game_logs.head('pergunta')
-        print("O que você vai olhar?")
-        print("DIGITE:")
-        print("> 'predio grande'")
-        print("> 'parquinho enferrujado'")
-        print("> 'estabulo'")
-        print("> 'voltar'")
-        LookChoice = helpers.choice(">> ")
-
-        if LookChoice == "predio grande":
-            if visited_places['window']['big_building_seen']:
-                game_logs.head('info')
-                print("Você já olhou para o prédio grande e viu tudo que havia de interessante.")
-                continue
-
-            visited_places['window']['big_building_seen'] = True
-            game_logs.head('narrador')
-            print(f"Ao olhar para o prédio grande, você vê alguns trabalhadores trabalhando normalmente, mas algo chama sua atenção, {C.YELLOW}um grupo de adolescentes está maltratando um gato{C.NORMAL}.")
-            game_logs.head('ação')
-            print("DIGITE:")
-            print("> 'intervir'")
-            print("> 'ignorar'")
-            action = helpers.choice(">> ")
-
-            if action == 'intervir':
-                game_logs.head('narrador')
-                print("Você pula da sua janeka em direção ao prédio grande, sabuga os adolescentes na porrada e salva o gato.")
-
-                game_logs.head('mensagem do dev')
-                print("em alguma atualização adcionar pet e stat")
-
-                game_logs.head('narrador')
-                print("Depois de salvar o gato, você volta pra sua casa.")
-                print("Você se encosta na janela.")
-
-            elif action == 'ignorar':
-                game_logs.head('narrador')
-                print("Você decide ignorar a situação, afinal, você é um covarde ou odeia gatos.")
-
-                game_logs.head('mensagem do dev')
-                print("em alguma atualização fazer o user escolher uma das opções")
-
-                game_logs.head('narrador')
-                print("Você se encosta na janela.")
-
-        elif LookChoice == "parquinho enferrujado":
-            if visited_places['window']['rusty_playground_seen']:
-                game_logs.head('info')
-                print("Você já olhou para o parquinho enferrujado e viu tudo que havia de interessante.")
-                continue
-
-            visited_places['window']['rusty_playground_seen'] = True
-            game_logs.head('narrador')
-            print(f"Ao olhar para o parquinho enferrujado, você avista algumas crianças brincando, mas outra coisa chama sua atenção, {C.YELLOW}um grupo de crianças está praticando bullying contra uma criança de óculos{C.NORMAL}.")
-            game_logs.head('ação')
-            print("DIGITE:")
-            print("> 'intervir'")
-            print("> 'ignorar'")
-            action = helpers.choice(">> ")
-
-            if action == 'intervir':
-                game_logs.head('narrador')
-                print("Você pula da sua janela em direção ao parquinho enferrujado, só de se aproximar das crianças, elas fogem com medo, assim, salvando a criança de óculos.")
-
-                game_logs.head('mensagem do dev')
-                print("em alguma atualização adcionar stat de bravura e adcionar um item da criança salva")
-
-                game_logs.head('narrador')
-                print("Depois de defender a criança, você volta pra sua casa.")
-                print("Você se encosta na janela.")
-
-            elif action == 'ignorar':
-                game_logs.head('narrador')
-                print("Você decide ignorar a situação, afinal, você é um covarde.")
-                print("Você se encosta na janela.")
-
-        elif LookChoice == "estabulo":
-            if visited_places['window']['stable_seen']:
-                game_logs.head('info')
-                print("Você já olhou para o estábulo e viu tudo que havia de interessante.")
-                continue
-            
-            visited_places['window']['stable_seen'] = True
-            game_logs.head('narrador')
-            print(f"Olhar para o estábulo, você pode ver alguns cavalos e galinhas, além disso, {C.YELLOW}uma garota de cabelo vermelho{C.NORMAL} chama sua atenção, ela está cuidando de um dos cavalos.")
-            game_logs.head('ação')
-            print("DIGITE:")
-            print("> 'acenar'")
-            print("> 'ignorar'")
-            action = helpers.choice(">> ")
-
-            if action == 'acenar':
-                game_logs.head('narrador')
-                print("Você acena para a garota de cabelo vermelho, ela sorri e acena de volta.")
-
-                game_logs.head('mensagem do dev')
-                print("em alguma atualização adcionar stat de carisma e talvez um interesse romântico")
-
-                game_logs.head('narrador')
-                print("Você se encosta na janela.")
-
-            elif action == 'ignorar':
-                game_logs.head('narrador')
-                print("Você decide ignorar a garota, afinal, você gosta de ser invisível.")
-                print("Você se encosta na janela.")
-
-        elif LookChoice == "voltar":
-            game_logs.head('narrador')
-            print("Você se afasta da janela e volta para a sua cama.")
-            return
-        
-        else:
-            print(f"{C.RED}Invalid choice!{C.NORMAL} Please enter 1, 2, 3 or 4.")
-        
-        if (
-            visited_places['window']['big_building_seen'] and
-            visited_places['window']['rusty_playground_seen'] and
-            visited_places['window']['stable_seen']
-        ):
-            visited_places['window']['visited'] = True
-            game_logs.head('info')
-            print("Depois de observar todos os pontos interessantes da janela, você decide se afastar dela.")
-            return
 
 @helpers.retry_on_inventory
 def look_room_choice():

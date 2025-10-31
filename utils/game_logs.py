@@ -8,7 +8,6 @@ def head(type: str):
         global LAST_LOG_HEAD
 
         if type.upper() != LAST_LOG_HEAD:
-            # print("\n------------------------------------------------------------")
             print(f"\n[{type.upper()}]\n")
 
             LAST_LOG_HEAD = type.upper()
@@ -94,3 +93,24 @@ def item_unequipped(char, item, bonus):
         print(bonus_output)
     else:
         print(f"Error: Item '{item}' not found in bonuses.")
+
+def voltar(local_no_singular: str, plural: bool):
+    artigo = {
+        "parquinho": "do",
+        "estabulo": "do",
+        "predio": "do",
+        "cama": "da",
+        "prateleira": "da",
+        "janela": "da"
+    }
+    d = artigo.get(local_no_singular, "de")
+
+    head('narrador')
+    if plural:
+        print(f"Você se afasta {d}s {local_no_singular}s e volta para onde estava.")
+    else:
+        print(f"Você se afasta {d} {local_no_singular} e volta para onde estava.")
+
+def erro():
+    head('Mensagem de Erro')
+    print(f"Escolha inválida! Por favor, digite uma das opções apresentadas.")
