@@ -8,8 +8,8 @@ def head(type: str):
         global LAST_LOG_HEAD
 
         if type.upper() != LAST_LOG_HEAD:
-            print("\n------------------------------------------------------------")
-            print(f"[{type.upper()}]\n")
+            # print("\n------------------------------------------------------------")
+            print(f"\n[{type.upper()}]\n")
 
             LAST_LOG_HEAD = type.upper()
 
