@@ -91,6 +91,14 @@ LUGARES_VASCULHADOS = {
         "predio_vasculhado": False,
         "parquinho_vasculhado": False,
         "estabulo_vasculhado": False
+    },
+    "materia": {
+        "feita": False,
+        "geo": False,
+        "fis": False,
+        "por": False,
+        "his": False,
+        "bio": False,
     }
 }
 

@@ -29,7 +29,7 @@ def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
     while True:
         cabecalho(escolha_acao_dialogo)
         situação_formatada = ', '.join(situação)
-        print(f"você pode ver {situação_formatada}, DIGITE o que você irá fazer.")
+        print(f"situação: {situação_formatada}, DIGITE o que você irá fazer.")
         for opcao in opcoes:
             print(f"> '{opcao}'")
         
