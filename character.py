@@ -1,35 +1,31 @@
 from .core import C
-from .assets.data import inv, bonus, stat
-from .utils.game_logs import head
+from .assets.data import atributos, mochila, bonus
+from .utils.evento import cabecalho
 from . import player
 
-
 def set_char():
-    global char
-    player.char = input(f"{C.MAGENTA}First, what is your character's first name? {C.NORMAL}").lower().capitalize()
+    player.char = input(f"{C.MAGENTA}Primeiro de tudo, qual o seu primeiro nome? {C.NORMAL}").lower().capitalize()
 
-def calc_bonuses():
-    all_bonuses = {} 
-    except_keys = ['is_equipped', 'body_part']
+def calc_bonus():
+    todos_os_bonus = {} 
+    evitar = ['equipado', 'corpo']
 
-    for item in inv:
+    for item in mochila:
         if item in bonus:
             info = bonus[item]
-            if info.get('is_equipped', False):
-                
+            if info.get('equipado', False):
                 for stat_name, bonus_value in info.items():
-                    if stat_name not in except_keys:
+                    if stat_name not in evitar:
                         if isinstance(bonus_value, (float, int)):
-                            all_bonuses[stat_name] = all_bonuses.get(stat_name, 0) + bonus_value
+                            todos_os_bonus[stat_name] = todos_os_bonus.get(stat_name, 0) + bonus_value
                         else:
                             pass
-    return all_bonuses
+    return todos_os_bonus
 
-# Get total stat including bonuses
 def get_total(stat_name):
-    return stat[stat_name] + calc_bonuses(stat_name)
+    return atributos[stat_name] + calc_bonus(stat_name)
 
-def state(value):
+def estado(value):
     if value > 0:
         return C.GREEN
     elif value < 0:
@@ -37,7 +33,7 @@ def state(value):
     else:
         return C.NORMAL
 
-def hp_state(value):
+def vida_estado(value):
     if value > 75:
         return C.GREEN
     elif value > 50:
@@ -45,96 +41,93 @@ def hp_state(value):
     else:
         return C.RED
 
-
-
-# Display character stats
-def display_stats(char):
-    head(f"{char} stats")
-    all_bonuses = calc_bonuses()
-    for atribute in stat:
-        atribute_val = stat[atribute]
-        atribute_bonus = all_bonuses.get(atribute, 0)
-        atribute_now = atribute_val + atribute_bonus
-        if atribute != 'hp':
-            color = state(atribute_now)
-            print(f"{atribute}: {color}{atribute_now}{C.NORMAL}")
+def mostrar_atributos(char):
+    cabecalho(f"Atributos de {char}")
+    todos_os_bonus = calc_bonus()
+    for atributo in atributos:
+        atributo_val = atributos[atributo]
+        atributo_bonus = todos_os_bonus.get(atributo, 0)
+        atributo_agora = atributo_val + atributo_bonus
+        if atributo != 'vida':
+            color = estado(atributo_agora)
+            print(f"{atributo}: {color}{atributo_agora}{C.NORMAL}")
         else:
-            color = hp_state(atribute_now)
-            print(f"{atribute}: {color}{atribute_now}{C.NORMAL}")
+            color = vida_estado(atributo_agora)
+            print(f"{atributo}: {color}{atributo_agora}{C.NORMAL}")
 
-def inventory_menu(char):
+def mostrar_mochila(char):
     while True:
-        head(f"{char} inventory")
-        print("'left' to leave the inventory.")
-        print("2. See general items.")
-        print("3. See equippable items.")
-        inv_choice = input(f"{C.MAGENTA}Enter the number of your choice: {C.NORMAL}").strip()
+        cabecalho(f"Mochila de {char}")
+        print('DIGITE para acessar as funcionalidades de mochila')
+        print("> 'itens gerais'")
+        print("> 'itens equipaveis'")
+        print("> 'sair'")
+        inv_choice = input(">> ").strip().lower()
 
         if inv_choice == "left":
             return
 
-        elif inv_choice == "2":
-            general_items = [item for item in inv if not bonus.get(item, {}).get('is_equippable', False)]
+        elif inv_choice == "itensgerais":
+            itens_gerais = [item for item in mochila if not bonus.get(item, {}).get('equipavel', False)]
 
-            if general_items:
-                print("Your general items:")
-                for item in general_items:
+            if itens_gerais:
+                print("Seus itens gerais:")
+                for item in itens_gerais:
                     print(f" - {item}")
             else:
-                print("Your have no general items.")
+                print("Você não tem itens gerais.")
 
-        elif inv_choice == "3":
-            equippable_items = [item for item in inv if bonus.get(item, {}).get('is_equippable', False)]
+        elif inv_choice == "itensequipaveis":
+            itens_equipaveis = [item for item in mochila if bonus.get(item, {}).get('equipavel', False)]
 
-            if equippable_items:
-                print("Your equippable items:")
-                for item in equippable_items:
-                    is_equipped = bonus[item].get('is_equipped', False)
-                    equipped_tag = f"{C.GREEN} (Equipped){C.NORMAL}" if is_equipped else ""
-                    print(f" - {item}{equipped_tag}")
+            if itens_equipaveis:
+                print("Seus itens equipavais:")
+                for item in itens_equipaveis:
+                    equipado = bonus[item].get('equipado', False)
+                    tag_equipado = f"{C.GREEN} (Equipped){C.NORMAL}" if equipado else ""
+                    print(f" - {item}{tag_equipado}")
 
-                print()
-                print("To equip an item, type its name.")
-                print("To desequip an item, type 'unequip <body_part>' (e.g., 'unequip torso').")
-                print("Type 'no' to return to the menu.")
-                equip_choice = input("Enter your choice: ").strip()
-                if equip_choice.lower() == 'no':
+                print("Para equipar um item, digite seu nome")
+                print("Pare desequipar um item, digite 'desequipar PARTE DO CORPO' (ex: 'desequipar tronco').")
+                print("Digite 'esquece' para voltar para o menu")
+                escolhaEquipar = input(">> ").strip().lower()
+                if escolhaEquipar.lower() == 'esquece':
                     continue
 
-                if equip_choice.lower().startswith("unequip"):
-                    parts = equip_choice.split()
-                    if len(parts) == 2:
-                        body_part = parts[1].lower()
-                        found = False
-                        for item_name in equippable_items:
-                            if bonus[item_name]['body_part'].lower() == body_part:
-                                bonus[item_name]['is_equipped'] = False
-                                found = True
-                        if found:
-                            print(f"All items in {body_part} are now unequipped.")
+                if escolhaEquipar.lower().startswith("desequipar"):
+                    parte = escolhaEquipar.split()
+                    if len(parte) == 2:
+                        corpo = parte[1].lower()
+                        achado = False
+                        for item_name in itens_equipaveis:
+                            if bonus[item_name]['corpo'].lower() == corpo:
+                                bonus[item_name]['equipado'] = False
+                                achado = True
+                        if achado:
+                            print(f"Todos os itens de {corpo} estão desequipados.")
                         else:
-                            print(f"{C.RED}No equipped items found in {body_part}.{C.NORMAL}")
+                            print(f"{C.RED}Sem itens equipados em {corpo}.{C.NORMAL}")
                     else:
-                        print(f"{C.RED}Invalid format. Use 'unequip <body_part>'.{C.NORMAL}")
+                        print(f"{C.RED}Formatação inválida, tente dessa forma: 'desequipar <parte do corpo>'.{C.NORMAL}")
                     continue
 
-                equipped_item_name = next(
-                    (item_name for item_name in equippable_items if item_name.lower() == equip_choice.lower()),
+                nome_item_equipado = next(
+                    (item_name for item_name in itens_equipaveis if item_name.lower() == escolhaEquipar.lower()),
                     None
                 )
 
-                if equipped_item_name:
-                    body_part = bonus[equipped_item_name]['body_part']
-                    for item_name in equippable_items:
-                        if bonus[item_name]['body_part'] == body_part:
-                            bonus[item_name]['is_equipped'] = False
+                if nome_item_equipado:
+                    corpo = bonus[nome_item_equipado]['corpo']
+                    for item_name in itens_equipaveis:
+                        if bonus[item_name]['corpo'] == corpo:
+                            bonus[item_name]['equipado'] = False
 
-                    bonus[equipped_item_name]['is_equipped'] = True
-                    print(f"You have equipped the {equipped_item_name}.")
+                    bonus[nome_item_equipado]['equipado'] = True
+                    print(f"Você equipou o item {nome_item_equipado}.")
                 else:
-                    print(f"{C.RED}Item not found or name typed incorrectly.{C.NORMAL}")
+                    print(f"{C.RED}Item não encontrado, ou você digitou errado.{C.NORMAL}")
             else:
-                print("You have no equippable items.")
+                print("Você não tem itens equipáveis")
 
         else:
-            print(f"{C.RED}Invalid choice! Please enter a valid number.{C.NORMAL}")
+            print(f"Tente novamente.")

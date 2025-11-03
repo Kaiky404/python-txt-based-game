@@ -1,96 +1,99 @@
-DEFAULT_ATRIBUTES = { 
-    "hp": 100,
-    "charisma": 0,
-    "bravery": 0,
-    "intimidation": 0
+ATRIBUTOS = { 
+    "vida": 100,
+    "carisma": 0,
+    "coragem": 0,
+    "intimidacao": 0
 }
 
-DEFAULT_INVENTORY = []
+MOCHILA = []
 
-ITEM_BONUSES = { 
-    "favorite long-sleeve shirt": {
-        "charisma": -1,
-        "bravery": 1,
-        "intimidation": -1,
-        "body_part": "torso",
-        "is_equippable": True,
-        "is_equipped": False
+BONUS_DOS_ITENS = { 
+    "mangalonga": {
+        "carisma": 0,
+        "coragem": 1,
+        "intimidacao": 0,
+        "corpo": "tronco",
+        "equipavel": True,
+        "equipado": False
     },
-    "well-used dark tanktop": {
-        "charisma": -1,
-        "bravery": 0,
-        "intimidation": 1,
-        "body_part": "torso",
-        "is_equippable": True,
-        "is_equipped": False
+    "regata": {
+        "carisma": 0,
+        "coragem": 0,
+        "intimidacao": 1,
+        "corpo": "tronco",
+        "equipavel": True,
+        "equipado": False
     },
-    "good-looking blazer": {
-        "charisma": 1,
-        "bravery": 0,
-        "intimidation": -1,
-        "body_part": "torso",
-        "is_equippable": True,
-        "is_equipped": False
+    "blazer": {
+        "carisma": 2,
+        "coragem": 0,
+        "intimidacao": 0,
+        "corpo": "tronco",
+        "equipavel": True,
+        "equipado": False
     },
-    "rusty kitchen knife": {
-        "charisma": 0,
-        "bravery": 0,
-        "intimidation": 1,
-        "body_part": "hand",
-        "is_equippable": True,
-        "is_equipped": False
+    "faca": {
+        "carisma": 0,
+        "coragem": 1,
+        "intimidacao": 2,
+        "corpo": "mao",
+        "equipavel": True,
+        "equipado": False
     },
-    "hair clip": {
-        "charisma": 0,
-        "bravery": 0,
-        "intimidation": 0,
-        "body_part": "none",
-        "is_equippable": False,
-        "is_equipped": False
+    "grampo": {
+        "carisma": 0,
+        "coragem": 0,
+        "intimidacao": 0,
+        "corpo": None,
+        "equipavel": True,
+        "equipado": False
     },
-    "key with a feather attached": {
-        "charisma": 0,
-        "bravery": 0,
-        "intimidation": 0,
-        "body_part": "none",
-        "is_equippable": False,
-        "is_equipped": False
+    "chavecompena": {
+        "carisma": 0,
+        "coragem": 0,
+        "intimidacao": 0,
+        "corpo": None,
+        "equipavel": True,
+        "equipado": False
     },
-    "wood plank": {
-        "charisma": 0,
-        "bravery": 1,
-        "intimidation": 0,
-        "body_part": "hand",
-        "is_equippable": True,
-        "is_equipped": False
+    "tabua": {
+        "carisma": 0,
+        "coragem": 1,
+        "intimidacao": 1,
+        "corpo": "mao",
+        "equipavel": True,
+        "equipado": False
     }
 }
 
-VISITED_PLACES_DEFAULT = {
-    "wardrobe": {
-        "visited": False,
-        "broken_door": False,
-        "w_u_d_tanktop_taken": False,
-        "g_l_blazer_taken": False,
-        "wood_plank_taken": False
+LUGARES_VASCULHADOS = {
+    "quarto": {
+        "vasculhado": False
     },
-    "under_bed": {
-        "visited": False,
-        "knife_taken": False
+    "guardaroupa": {
+        "vasculhado": False,
+        "portaquebrada": False,
+        "regata_pega": False,
+        "blazer_pego": False,
+        "tabua_pega": False
     },
-    "shelves": {
-        "visited": False,
-        "hair_clip_taken": False,
-        "key_taken": False
+    "cama": {
+        "vasculhada": False,
+        "faca_pega": False
     },
-    "window": {
-        "visited": False,
-        "big_building_seen": False,
-        "rusty_playground_seen": False,
-        "stable_seen": False
+    "prateleira": {
+        "vasculhada": False,
+        "grampo_pego": False,
+        "chave_pega": False
+    },
+    "janela": {
+        "vasculhada": False,
+        "predio_vasculhado": False,
+        "parquinho_vasculhado": False,
+        "estabulo_vasculhado": False
     }
 }
 
-stat = DEFAULT_ATRIBUTES.copy()
-inv = DEFAULT_INVENTORY.copy()
-bonus = ITEM_BONUSES.copy()
+atributos = ATRIBUTOS.copy()
+mochila = MOCHILA.copy()
+bonus = BONUS_DOS_ITENS.copy()

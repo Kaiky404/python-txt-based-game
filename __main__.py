@@ -1,9 +1,9 @@
 from colorama import init
 init(autoreset=True)
 
-def start_game():
-    from .places import main_choice_loop
+def jogo():
+    from .flow import principal
 
-    main_choice_loop()
+    principal()
 
-start_game()
+jogo()

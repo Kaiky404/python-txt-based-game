@@ -1,31 +1,31 @@
-from ....core import game_logs, visited_places, C, helpers
+from ....core import evento, lugares_vasculhados, C, helpers
 
 def estabulo():
     while True:
-        if visited_places['window']['stable_seen']:
-            game_logs.head('info')
+        if lugares_vasculhados['janela']['estabulo_vasculhado']:
+            evento.cabecalho('info')
             print("Você já olhou para o estábulo e viu tudo que havia de interessante.")
             return
         
-        game_logs.head('narrador')
+        evento.cabecalho('narrador')
         print("Você pode ver alguns cavalos e galinhas no estábulo, mas além disso, algo chama sua atenção...")
         escolha = helpers.pergunta("ação", [f"{C.YELLOW}uma garota de cabelo vermelho{C.NORMAL}"], ["acenar", "ignorar"])
 
         if escolha == 'acenar':
-            visited_places['window']['stable_seen'] = True
-            game_logs.head('narrador')
+            lugares_vasculhados['janela']['estabulo_vasculhado'] = True
+            evento.cabecalho('narrador')
             print("Você acena para a garota de cabelo vermelho, ela sorri e acena de volta.")
 
-            game_logs.head('mensagem do dev')
+            evento.cabecalho('mensagem do dev')
             print("em alguma atualização adcionar stat de carisma e talvez um interesse romântico")
             return
 
         elif escolha == 'ignorar':
-            visited_places['window']['stable_seen'] = True
-            game_logs.head('narrador')
+            lugares_vasculhados['janela']['estabulo_vasculhado'] = True
+            evento.cabecalho('narrador')
             print("Você decide ignorar a garota, afinal, você gosta de ser invisível.")
             return
         
         else:
-            game_logs.erro()
+            evento.erro()
             continue
