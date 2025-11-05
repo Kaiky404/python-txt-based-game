@@ -3,7 +3,6 @@ from .... import player
 
 @helpers.retry_on_inventory
 def guardaroupa():
-    # roupas = ["mangalonga", "regata", "blazer"]
     if lugares_vasculhados['guardaroupa']['vasculhado']:
         evento.cabecalho('info')
         print("Você já procurou no guarda-roupa e encontrou tudo que havia de interessante.")

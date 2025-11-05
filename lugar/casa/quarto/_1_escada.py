@@ -1,8 +1,8 @@
 from ....core import evento, helpers, lugares_vasculhados, C
 from .... import player
-from ...foradecasa.escola.escola import escola
-from ...foradecasa.fazenda.fazenda import fazenda
-from ...foradecasa.floresta.floresta import floresta
+from ...foradecasa.escola._1_escola import escola
+from ...foradecasa.fazenda._1_fazenda import fazenda
+from ...foradecasa.floresta._1_floresta import floresta
 
 def escada():
     evento.cabecalho('narrador')

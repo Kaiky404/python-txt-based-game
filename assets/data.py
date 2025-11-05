@@ -7,7 +7,15 @@ ATRIBUTOS = {
 
 MOCHILA = []
 
-BONUS_DOS_ITENS = { 
+BONUS_DOS_ITENS = {
+    "pistola": {
+        "carisma": 0,
+        "coragem": 2,
+        "intimidacao": 4,
+        "corpo": "mao",
+        "equipavel": True,
+        "equipado": False 
+    },
     "mangalonga": {
         "carisma": 0,
         "coragem": 1,
@@ -99,6 +107,19 @@ LUGARES_VASCULHADOS = {
         "por": False,
         "his": False,
         "bio": False,
+    },
+    "fazenda": {
+        "vasculhada": False,
+        "galinheiro": {
+            "vasculhado": False,
+            "pistola_pega": False,
+            "rabisco_lido": False
+        },
+        "cerca": {
+            "arrumada": False,
+            "ajustar": False,
+            "Trocar": False
+        }
     }
 }
 
