@@ -1,6 +1,7 @@
 from ....core import evento, helpers, C, lugares_vasculhados
 from .... import player
 from ._3b_trocar import trocar
+from ._3a_ajustar import ajustar
 
 def cerca():
     entrou = False
@@ -49,10 +50,10 @@ def cerca():
             helpers.erro()
         
         if (
-            lugares_vasculhados['fazenda']['cerca']['ajustar'] and
-            lugares_vasculhados['fazenda']['cerca']['trocar']
+            lugares_vasculhados['fazenda']['cerca']['trocar'] and
+            lugares_vasculhados['fazenda']['cerca']['ajustar']
             ):
             lugares_vasculhados['fazenda']['cerca']['arrumada'] = True
             evento.head('info')
-            print(f"Depois de interagir com todos os pontos interessantes da cerca, {player.char} decide fazer outra coisa.")
+            print(f"Depois de trocar e ajustar a cerca no lugar, {player.char} decide fazer outra coisa.")
             return

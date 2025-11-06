@@ -7,7 +7,6 @@ def trocar():
     while True:
         
         evento.cabecalho('narrador')
-        print(f"DEBUG: MOCHILA ATUAL: {mochila}")
 
         if not entrou:
             print(f"Vendo que a madeira da cerca está podre, {player.char} procura em sua mochila por algo para substituir ela.")
