@@ -12,7 +12,7 @@ def cabecalho(type: str):
             LAST_LOG_HEAD = type.upper()
 
 def dano(char, qtd: int, razao: str):
-    cabecalho('damage')
+    cabecalho('dano')
     atributos['vida'] -= qtd
     if atributos['vida'] <= 0:
         atributos['vida'] = 0

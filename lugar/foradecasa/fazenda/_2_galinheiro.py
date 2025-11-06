@@ -15,36 +15,75 @@ def galinheiro():
             entrou = True
         
         print(f"Ele enfia sua cabeça dentro do galinheiro, conseguindo ver algumas coisas...")
-        print(f"Uma galinha e cima de seu ninho e algo rabiscado na parede do galinheiro.")
+
+        situação = [f"Dentro do galinheiro, {player.char} pode ver"]
+        ação = []
+
+        if not lugares_vasculhados['fazenda']['galinheiro']['galinha_vazou']:
+            situação.append(f"uma galinha emcima de seu ninho")
+            ação.append('galinha')
+        else:
+            situação.append(f"uma caixa em cima de um ninho")
+            ação.append('caixa')
+
+        if not lugares_vasculhados['fazenda']['galinheiro']['rabisco_lido']:
+            situação.append(f"ou algo rabiscado na parede do galinheiro")
+            ação.append('parede')
+        else:
+            situação.append(f"ou algo rabiscado na parede do galinheiro (já leu o rabisco)")
+        
+        ação.append('sair')
 
         escolhaGalinheiro = helpers.pergunta(
             'escolha',
-            [f'{player.char} pode interagir com a galinha, ou tentar enxergar o que tem escrito na parede'],
-            ['galinha', 'parede', 'sair']
+            situação,
+            ação
         )
 
-        if escolhaGalinheiro == 'galinha':
+        if escolhaGalinheiro in ('galinha', 'caixa'):
 
-            evento.cabecalho('narrador')
-            print(f"E então {player.char} decide tentar tirar a galinha de cima do ninho")
-            print(f"Ele pensa em algumas alternativas como tentar empurrar a galinha ou atraí-la com algo")
+            if not lugares_vasculhados['fazenda']['galinheiro']['galinha_vazou']: 
+                evento.cabecalho('narrador')
+                print(f"E então {player.char} decide tentar tirar a galinha de cima do ninho")
+                print(f"Ele pensa em algumas alternativas como tentar empurrar a galinha ou atraí-la com algo")
 
-            escolhaGalinha = helpers.pergunta(
-                'ação',
-                [f'{player.char} pode tentar chamar a atenção da galinha para longe do ninho ou deixar ela em paz'],
-                ['atrair', 'sair']
-            )
+                escolhaGalinha = helpers.pergunta(
+                    'ação',
+                    [f'{player.char} pode tentar chamar a atenção da galinha para longe do ninho ou deixar ela em paz'],
+                    ['atrair', 'sair']
+                )
 
-            if escolhaGalinha == 'atrair':
-                atrair()
-            
-            elif escolhaGalinha == 'sair':
-                print(f"{player.char} decide deixar a galinha em paz por enquanto.")
-                break
+                if escolhaGalinha == 'atrair':
+                    atrair()
+                
+                elif escolhaGalinha == 'sair':
+                    print(f"{player.char} decide deixar a galinha em paz por enquanto.")
+                    break
+                else:
+                    helpers.erro()
             else:
-                helpers.erro()
+                escolhaCaixa = helpers.pergunta(
+                'ação',
+                [f'{player.char} tenta abrir a caixa?'],
+                ['abrir', 'sair']
+                )
 
-        elif escolhaGalinheiro == 'parede':
+                evento.cabecalho('narrador')
+                if escolhaCaixa == 'abrir':
+                    if lugares_vasculhados.get('prateleira', {}).get('chave_pega'):
+                        print(f"{player.char} abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
+                        evento.adicionar(player.char, 'pistola')
+                        lugares_vasculhados['fazenda']['galinheiro']['pistola_pega'] = True
+                        return
+                    print(f"{player.char} não consegue abrir a caixa já que não tem a chave correspondente.")
+
+                elif escolhaCaixa == 'sair':
+                    print(f"{player.char} decide largar a caixa lá por agora.")
+
+                else:
+                    helpers.erro()
+
+        elif escolhaGalinheiro == 'parede' and not lugares_vasculhados['fazenda']['galinheiro']['rabisco_lido']:
             parede()
 
         elif escolhaGalinheiro == 'sair':

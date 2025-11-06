@@ -32,10 +32,12 @@ def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
         print(f"situação: {situação_formatada}, DIGITE o que você irá fazer.")
         for opcao in opcoes:
             print(f"> '{opcao}'")
-        
+    
         escolha = choice(">> ")
-        if escolha in opcoes:
+        if escolha in opcoes:  
+            print("\n")
             return escolha.strip().lower().replace(' ', '')
+
         else:
             erro()
             continue

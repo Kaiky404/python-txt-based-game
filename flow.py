@@ -1,6 +1,7 @@
 from .core import C, helpers, evento, set_char
 from .utils.helpers import retry_on_inventory
-from .lugar.core import janela, quarto, escada
+from .lugar.core import janela, quarto
+from .lugar.casa.quarto._1_escada import escada
 from . import player
 from .visuals import jose, maria, char
 

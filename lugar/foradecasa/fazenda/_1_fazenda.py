@@ -39,9 +39,9 @@ def fazenda():
             opções
             )
 
-        if escolhaFazenda == 'galinheiro':
+        if escolhaFazenda == 'galinheiro' and not lugares_vasculhados['fazenda']['galinheiro']['vasculhado']:
             galinheiro()
-        elif escolhaFazenda == 'cerca':
+        elif escolhaFazenda == 'cerca' and not lugares_vasculhados['fazenda']['cerca']['arrumada']:
             cerca()
         elif escolhaFazenda == 'sair':
             return

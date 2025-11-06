@@ -5,7 +5,7 @@ def atrair():
     entrou = False
 
     while True:
-        
+        sucesso = False
         evento.cabecalho('narrador')
 
         if not entrou:
@@ -13,83 +13,127 @@ def atrair():
             print(f"Depois de alguns minutos, ele reuniu um pedaço de casca de fruta cítrica, uma pedrinha e um punhado de mato.")
             entrou = True
 
+            situação = [f"Para distrair a galinha, {player.char} pode "]
+            opção = []
+
+            if not lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['usado']:
+                situação.append(f"usar o pedaço de casca cítrica")
+                opção.append("casca")
+            else:
+                situação.append(f"usar o pedaço de casca cítrica (já fez isso)")
+
+            if not lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['usado']:
+                situação.append(f"usar a pedrinha")
+                opção.append("pedra")
+            else:
+                situação.append(f"usar a pedrinha (já fez isso)")
+
+            if not lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['usado']:
+                situação.append(f"usar o punhado de mato")
+                opção.append("mato")
+            else:
+                situação.append(f"usar o punhado de mato (já fez isso)")
+
+            situação.append(f"ou ir embora")
+            opção.append("sair")
+
         escolhaAtrair = helpers.pergunta(
             'escolha',
-            [f'Para distrair a galinha, {player.char} pode usar o pedaço de casca, a pedrinha ou o punhado de mato'],
-            ['casca', 'pedra', 'mato', 'sair']
+            situação,
+            opção
         )
 
+        ações = [f'{player.char} pode arremessar o/a {escolhaAtrair} ou larga-lo/a perto da galinha.']
+        opções = ['arremessar', 'largar']
+
+        arremessar = f"E então {player.char} arremessa o/a {escolhaAtrair} em direção da galinha.\n"
+        largar = f"E então {player.char} larga o/a {escolhaAtrair} perto da galinha.\n"
+
         evento.cabecalho('narrador')
-        print(f"{player.char} pega a/o {escolhaAtrair} na mão e pensa se é melhor arremessar ou deixá-la/o perto da galinha")        
+        print(f"{player.char} pega o/a {escolhaAtrair} na mão e pensa se é melhor arremessar ou deixá-lo/a perto da galinha")        
         
-        if escolhaAtrair == 'casca':
+        if escolhaAtrair == 'casca' and not lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['usado']:
 
             escolhaAcao = helpers.pergunta(
                 'ação',
-                [f'{player.char} pode arremessar a {escolhaAtrair} ou deixá-la perto da galinha.'],
-                ['arremessar', 'deixar']
+                ações,
+                opções
             )
 
             evento.cabecalho('narrador')
             if escolhaAcao == 'arremessar':
-                print(f"E então {player.char} arremessa a {escolhaAtrair} em direção da galinha.\n" 
+                print(f"{arremessar}\n"
                       f"A galinha cheira a {escolhaAtrair} um pouco e cisca pra longe, meio que espirrando.")
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['arremessado'] = True
                 sucesso = True
 
-            elif escolhaAcao == 'deixar':
-                print(f"E então {player.char} deixa a {escolhaAtrair} perto da galinha.\n" 
+            elif escolhaAcao == 'largar':
+                print(f"{largar}\n"
                       f"A galinha ignora completamente a {escolhaAtrair}.")
-                sucesso = False
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['largado'] = True
 
             else:
                 helpers.erro()
+            
+            if (lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['arremessado'] or
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['largado']):
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['casca']['usado'] = True
 
-        elif escolhaAtrair == 'pedra':
+        elif escolhaAtrair == 'pedra' and not lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['usado']:
 
             escolhaAcao = helpers.pergunta(
                 'ação',
-                [f'{player.char} pode arremessar a {escolhaAtrair} ou deixá-la perto da galinha.'],
-                ['arremessar', 'deixar']
+                ações,
+                opções
             )
 
             evento.cabecalho('narrador')
             if escolhaAcao == 'arremessar':
-                print(f"E então {player.char} arremessa a {escolhaAtrair} em direção da galinha.\n" 
+                print(f"{arremessar}\n"
                       f"A galinha recebe a {escolhaAtrair} em cheio, olha em direção do {player.char} e começa a correr.\n"
                       f"{player.char} sem saber o que fazer, fica parado igual a uma planta.\n"
-                      f"A galinha então o ataca, e bicora um de seu olhos, o arrancando-os fora!")
+                      f"A galinha então o ataca, bicando um de seus olhos e arrancando-o fora!")
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['arremessado'] = True
                 evento.dano(player.char, 50, 'ter o olho arrancado')
-                sucesso = False
 
-            elif escolhaAcao == 'deixar':
-                print(f"E então {player.char} deixa a {escolhaAtrair} perto da galinha.\n" 
+            elif escolhaAcao == 'largar':
+                print(f"{largar}\n"
                       f"A galinha ignora completamente a {escolhaAtrair}.")
-                sucesso = False
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['largado'] = True
 
             else:
                 helpers.erro()
 
-        elif escolhaAtrair == 'mato':
+            if (lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['arremessado'] or
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['largado']):
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['pedra']['usado'] = True
+
+        elif escolhaAtrair == 'mato' and not lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['usado']:
 
             escolhaAcao = helpers.pergunta(
                 'ação',
-                [f'{player.char} pode arremessar o {escolhaAtrair} ou deixá-lo perto da galinha.'],
-                ['arremessar', 'deixar']
+                ações,
+                opções
             )
 
             evento.cabecalho('narrador')
             if escolhaAcao == 'arremessar':
-                print(f"E então {player.char} arremessa o {escolhaAtrair} em direção da galinha.\n" 
+                print(f"{arremessar}\n"
                       f"O {escolhaAtrair} se desfaz no ar assim que sai de sua mão.")
-                sucesso = False
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['arremessado'] = True
 
-            elif escolhaAcao == 'deixar':
-                print(f"E então {player.char} deixa o {escolhaAtrair} perto da galinha.\n" 
+            elif escolhaAcao == 'largar':
+                print(f"{largar}\n"
                       f"A galinha, curiosa, sobe em cima do {escolhaAtrair} e começa a ciscar.")
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['largado'] = True
                 sucesso = True
 
             else:
                 helpers.erro()
+
+            if (lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['arremessado'] or
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['largado']):
+                lugares_vasculhados['fazenda']['galinheiro']['atrair']['mato']['usado'] = True
 
         elif escolhaAtrair == 'sair':
             return
@@ -100,6 +144,7 @@ def atrair():
         if sucesso:
             evento.cabecalho('narrador')
             print(f"{player.char} consegue afastar a galinha do ninho e o que eram para ser ovos, é na verdade uma caixa trancada")
+            lugares_vasculhados['fazenda']['galinheiro']['galinha_vazou'] = True
             escolhaCaixa = helpers.pergunta(
                 'ação',
                 [f'{player.char} tenta abrir a caixa?'],
@@ -108,7 +153,7 @@ def atrair():
 
             evento.cabecalho('narrador')
             if escolhaCaixa == 'abrir':
-                if lugares_vasculhados['prateleira']['chave_pega']:
+                if lugares_vasculhados.get('prateleira', {}).get('chave_pega'):
                     print(f"{player.char} abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
                     evento.adicionar(player.char, 'pistola')
                     lugares_vasculhados['fazenda']['galinheiro']['pistola_pega'] = True
@@ -116,7 +161,7 @@ def atrair():
                 print(f"{player.char} não consegue abrir a caixa já que não tem a chave correspondente.")
 
             elif escolhaCaixa == 'sair':
-                print(f"{player.char} decide deixar a caixa lá por agora.")
+                print(f"{player.char} decide largar a caixa lá por agora.")
 
             else:
                 helpers.erro()

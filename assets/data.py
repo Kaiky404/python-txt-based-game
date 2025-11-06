@@ -76,7 +76,8 @@ BONUS_DOS_ITENS = {
 
 LUGARES_VASCULHADOS = {
     "quarto": {
-        "vasculhado": False
+        "vasculhado": False,
+        "bronca_do_pai": False
     },
     "guardaroupa": {
         "vasculhado": False,
@@ -113,7 +114,25 @@ LUGARES_VASCULHADOS = {
         "galinheiro": {
             "vasculhado": False,
             "pistola_pega": False,
-            "rabisco_lido": False
+            "rabisco_lido": False,
+            "galinha_vazou": False,
+            "atrair": {
+                "casca": {
+                    "usado": False,
+                    "arremesado": False,
+                    "largado": False
+                },
+                "pedra": {
+                    "usado": False,
+                    "arremesado": False,
+                    "largado": False
+                },
+                "mato": {
+                    "usado": False,
+                    "arremesado": False,
+                    "largado": False
+                },
+            }
         },
         "cerca": {
             "arrumada": False,

@@ -40,9 +40,9 @@ def cerca():
             opção
         )
 
-        if escolhaCerca == 'ajustar':
+        if escolhaCerca == 'ajustar' and not lugares_vasculhados['fazenda']['cerca']['ajustar']:
             ajustar()
-        elif escolhaCerca == 'trocar':
+        elif escolhaCerca == 'trocar'and not lugares_vasculhados['fazenda']['cerca']['trocar']:
             trocar()
         elif escolhaCerca == 'sair':
             return
