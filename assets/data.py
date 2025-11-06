@@ -5,7 +5,7 @@ ATRIBUTOS = {
     "intimidacao": 0
 }
 
-MOCHILA = []
+MOCHILA = {}
 
 BONUS_DOS_ITENS = {
     "pistola": {
@@ -118,11 +118,7 @@ LUGARES_VASCULHADOS = {
         "cerca": {
             "arrumada": False,
             "ajustar": False,
-            "Trocar": False
+            "trocar": False
         }
     }
 }
-
-atributos = ATRIBUTOS.copy()
-mochila = MOCHILA.copy()
-bonus = BONUS_DOS_ITENS.copy()

@@ -40,7 +40,7 @@ def guardaroupa():
                         return
                     
                     lugares_vasculhados['guardaroupa']['regata_pega'] = True
-                    evento.add_item(player.char, "regata")
+                    evento.adicionar(player.char, "regata")
                     return
                 
                 elif escolhaRoupa == "blazer":
@@ -50,7 +50,7 @@ def guardaroupa():
                         return
                     
                     lugares_vasculhados['guardaroupa']['blazer_pego'] = True
-                    evento.add_item(player.char, "blazer")
+                    evento.adicionar(player.char, "blazer")
                     return
                 
                 elif escolhaRoupa == "tabua":
@@ -60,7 +60,7 @@ def guardaroupa():
                         return
 
                     lugares_vasculhados['guardaroupa']['tabua_pega'] = True
-                    evento.add_item(player.char, "tabua")
+                    evento.adicionar(player.char, "tabua")
                     return
 
                 elif escolhaRoupa == "voltar":

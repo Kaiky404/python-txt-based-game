@@ -7,14 +7,16 @@ from ._3c_cama import cama
 def quarto():
     while True:
         if lugares_vasculhados['quarto']['vasculhado']:
-            evento.head('info')
+            evento.cabecalho('info')
             print("Você já olhou tudo do seu quarto e encontrou tudo que havia de interessante nele.")
             return
 
-        evento.head('narrador')
+        evento.cabecalho('narrador')
         print("Enquanto você olha ao redor do seu quarto...")
-        evento.head('pergunta')
-        escolhaQuarto = helpers.pergunta("escolha", [f"um {C.YELLOW}guarda-roupa{C.NORMAL}, {C.YELLOW}algumas prateleiras{C.NORMAL} e {C.YELLOW}debaixo da sua cama{C.NORMAL}."], ["guardaroupa, cama, prateleira, voltar"] )
+        escolhaQuarto = helpers.pergunta(
+            "escolha",
+            [f"um {C.YELLOW}guarda-roupa{C.NORMAL}, {C.YELLOW}algumas prateleiras{C.NORMAL} e {C.YELLOW}debaixo da sua cama{C.NORMAL}."],
+            ["guardaroupa", "cama", "prateleira", "voltar"])
 
         if escolhaQuarto == "guardaroupa":
             guardaroupa()
@@ -30,12 +32,13 @@ def quarto():
         
         else:
             evento.erro()
+
         if (
-            lugares_vasculhados['wardrobe']['visited'] and
-            lugares_vasculhados['under_bed']['visited'] and
-            lugares_vasculhados['shelves']['visited']
+            lugares_vasculhados['guardaroupa']['vasculhado'] and
+            lugares_vasculhados['cama']['vasculhada'] and
+            lugares_vasculhados['prateleira']['vasculhada']
             ):
             lugares_vasculhados['quarto']['vasculhado'] = True
-            evento.head('info')
+            evento.cabecalho('info')
             print("Depois de observar todos os pontos interessantes do quarto, você decide fazer outra coisa.")
             return

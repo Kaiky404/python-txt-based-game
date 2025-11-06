@@ -1,5 +1,6 @@
 from ....core import evento, helpers, C, lugares_vasculhados
 from .... import player
+from ._3b_trocar import trocar
 
 def cerca():
     entrou = False
@@ -8,12 +9,11 @@ def cerca():
 
         if not entrou:
             evento.cabecalho('narrador')
-            print(f"E então {player.char} decide checar a cerca")
+            print(f"E então {player.char} decide checar a cerca\n"
+                  f"{player.char} atravessa o paiol e logo mais descobre onde estava quebrado na cerca.\n"
+                  f"Determinado a ajudar seu pai com o trabalho na fazenda, ele pensa em algumas formas de arrumar a cerca.")
             entrou = True
 
-        print(f"{player.char} atravessa o paiol e logo mais descobre onde estava quebrado na cerca.\n"
-              f"Determinado a ajudar seu pai com o trabalho na fazenda, ele pensa em algumas formas de arrumar a cerca.\n")
-        
         situação = [f"{player.char} pode tentar"]
         opção = []
 

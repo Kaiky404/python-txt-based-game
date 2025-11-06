@@ -1,6 +1,7 @@
 from ....core import evento, helpers, lugares_vasculhados, C
 from .... import player
 from ._2_galinheiro import galinheiro
+from ._3_cerca import cerca
 
 def fazenda():
     entrou = False
@@ -41,7 +42,7 @@ def fazenda():
         if escolhaFazenda == 'galinheiro':
             galinheiro()
         elif escolhaFazenda == 'cerca':
-            pass
+            cerca()
         elif escolhaFazenda == 'sair':
             return
         else:

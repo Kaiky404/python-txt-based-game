@@ -1,5 +1,5 @@
 from ..core import C
-from ..assets.data import atributos, mochila, bonus
+from ..assets.data import ATRIBUTOS as atributos, MOCHILA as mochila, BONUS_DOS_ITENS as bonus
 
 LAST_LOG_HEAD = None
 
@@ -30,13 +30,15 @@ def cura(char, qtd, razao):
 
 def adicionar(char, item):
     cabecalho('Item guardado na mochila')
-    mochila.append(item)
+    mochila[item] = mochila.get(item, 0) + 1
     print(f"{char} obteve {item}")
 
 def discartar(char, item):
-    if item in mochila:
+    if item in mochila and mochila[item] > 0:
+        mochila[item] -= 1
+        if mochila[item] == 0:
+            del mochila[item]
         cabecalho('Item descartado da mochila')
-        mochila.remove(item)
         print(f"{char} discartou {item}")
     else:
         print(f"{char} não tem {item} na mochila")

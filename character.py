@@ -1,5 +1,5 @@
 from .core import C
-from .assets.data import atributos, mochila, bonus
+from .assets.data import ATRIBUTOS as atributos, MOCHILA as mochila, BONUS_DOS_ITENS as bonus
 from .utils.evento import cabecalho
 from . import player
 
@@ -62,9 +62,9 @@ def mostrar_mochila(char):
         print("> 'itens gerais'")
         print("> 'itens equipaveis'")
         print("> 'sair'")
-        inv_choice = input(">> ").strip().lower()
+        inv_choice = input(">> ").strip().lower().replace(" ", "")
 
-        if inv_choice == "left":
+        if inv_choice == "sair":
             return
 
         elif inv_choice == "itensgerais":
@@ -73,7 +73,8 @@ def mostrar_mochila(char):
             if itens_gerais:
                 print("Seus itens gerais:")
                 for item in itens_gerais:
-                    print(f" - {item}")
+                    quantidade = mochila[item]
+                    print(f" - {item} (x{quantidade})")
             else:
                 print("Você não tem itens gerais.")
 
@@ -83,9 +84,10 @@ def mostrar_mochila(char):
             if itens_equipaveis:
                 print("Seus itens equipavais:")
                 for item in itens_equipaveis:
+                    quantidade = mochila[item]
                     equipado = bonus[item].get('equipado', False)
                     tag_equipado = f"{C.GREEN} (Equipped){C.NORMAL}" if equipado else ""
-                    print(f" - {item}{tag_equipado}")
+                    print(f" - {item} (x{quantidade}){tag_equipado}")
 
                 print("Para equipar um item, digite seu nome")
                 print("Pare desequipar um item, digite 'desequipar PARTE DO CORPO' (ex: 'desequipar tronco').")
