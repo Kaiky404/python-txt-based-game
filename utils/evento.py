@@ -115,3 +115,4 @@ def voltar(local_no_singular: str, plural: bool):
 def erro():
     cabecalho('Mensagem de Erro')
     print(f"Escolha inválida! Por favor, digite uma das opções apresentadas.")
+

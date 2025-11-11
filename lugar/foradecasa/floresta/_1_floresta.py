@@ -1,12 +1,48 @@
 from ....core import evento, helpers, lugares_vasculhados, C
+from .... import player
+from ._2_explorar import explorar
 
 def floresta():
-    while True:
-        evento.cabecalho('narrador')
-        print("Você caminha em direção à floresta próxima, cumprimentando alguns conhecidos pelo caminho.")
-        print("Ao chegar, você se aventura entre as árvores, ouvindo os sons da natureza ao seu redor.")
-        print("O tempo passa e você derrepente se vê perdido na floresta.")
+    entrou = False
 
-        evento.cabecalho('menssagem do dev')
-        print("Em alguma atualização futura, adicionar mais interações na floresta. DEADENDLINE")
-        return
+    while True:
+        
+        if not lugares_vasculhados['floresta']['vasculhada']:
+
+            if not entrou:
+                evento.cabecalho('narrador')
+                print(f"{player.char} caminha em direção à floresta próxima.\n"
+                    f"Ao chegar, {player.char} se aventura entre as árvores, ouvindo os sons da natureza ao seu redor.\n"
+                    f"O tempo passa e {player.char} derrepente se vê perdido na floresta.")
+                entrou = True
+
+            situação = [f"{player.char} se perdeu na floresta e pode tentar"]
+            opções = []
+
+            if not lugares_vasculhados['floresta']['vasculhada']:
+                situação.append("explorar a floresta mais a fundo")
+                opções.append("explorar")
+            else:
+                situação.append("explorar a floresta mais a fundo (já fez isso)")
+
+            situação.append("voltar por onde veio")
+            opções.append("voltar")
+
+            escolhaFloresta = helpers.pergunta(
+                'escolha',
+                situação,
+                opções
+            )
+
+            if escolhaFloresta == 'explorar' and not lugares_vasculhados['floresta']['vasculhada']:
+                explorar()
+
+            elif escolhaFloresta == 'voltar':
+                pass
+
+            else:
+                helpers.erro()
+
+        else:
+            print(f"{player.char} já se perdeu na floresta e achou o caminho de volta, ele não quer mais ir lá.")
+            return

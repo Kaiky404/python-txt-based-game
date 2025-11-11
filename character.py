@@ -6,24 +6,27 @@ from . import player
 def set_char():
     player.char = input(f"{C.MAGENTA}Primeiro de tudo, qual o seu primeiro nome? {C.NORMAL}").lower().capitalize()
 
-def calc_bonus():
-    todos_os_bonus = {} 
-    evitar = ['equipado', 'corpo']
+def calc_bonus(stat_name=None):
+    if stat_name:
+        total_bonus = 0
+        for item, info in mochila.items():
+            if item in bonus and bonus[item].get("equipado", False):
+                total_bonus += bonus[item].get(stat_name, 0)
+        return total_bonus
 
-    for item in mochila:
-        if item in bonus:
-            info = bonus[item]
-            if info.get('equipado', False):
-                for stat_name, bonus_value in info.items():
-                    if stat_name not in evitar:
-                        if isinstance(bonus_value, (float, int)):
-                            todos_os_bonus[stat_name] = todos_os_bonus.get(stat_name, 0) + bonus_value
-                        else:
-                            pass
-    return todos_os_bonus
+    total = {attr: 0 for attr in atributos}
+    for item, info in mochila.items():
+        if item in bonus and bonus[item].get("equipado", False):
+            for attr in atributos:
+                total[attr] += bonus[item].get(attr, 0)
+    return total
+
+
 
 def get_total(stat_name):
-    return atributos[stat_name] + calc_bonus(stat_name)
+    base = atributos.get(stat_name, 0)
+    bonus = calc_bonus(stat_name)
+    return base + bonus
 
 def estado(value):
     if value > 0:
@@ -57,7 +60,8 @@ def mostrar_atributos(char):
 
 def mostrar_mochila(char):
     while True:
-        cabecalho(f"Mochila de {char}")
+        mostrar_atributos(player.char)
+        cabecalho(f"mochila de {char}")
         print('DIGITE para acessar as funcionalidades de mochila')
         print("> 'itens gerais'")
         print("> 'itens equipaveis'")

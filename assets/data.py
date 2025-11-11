@@ -2,48 +2,63 @@ ATRIBUTOS = {
     "vida": 100,
     "carisma": 0,
     "coragem": 0,
-    "intimidacao": 0
+    "inteligência": 0,
+    "força": 0
 }
 
 MOCHILA = {}
 
 BONUS_DOS_ITENS = {
-    "pistola": {
-        "carisma": 0,
-        "coragem": 2,
-        "intimidacao": 4,
-        "corpo": "mao",
-        "equipavel": True,
-        "equipado": False 
-    },
     "mangalonga": {
         "carisma": 0,
-        "coragem": 1,
-        "intimidacao": 0,
+        "coragem": 0,
+        "inteligência": 3,
+        "força": 0,
         "corpo": "tronco",
         "equipavel": True,
         "equipado": False
     },
     "regata": {
         "carisma": 0,
-        "coragem": 0,
-        "intimidacao": 1,
+        "coragem": 3,
+        "inteligência": 0,
+        "força": 0,
         "corpo": "tronco",
         "equipavel": True,
         "equipado": False
     },
     "blazer": {
-        "carisma": 2,
+        "carisma": 3,
         "coragem": 0,
-        "intimidacao": 0,
+        "inteligência": 0,
+        "força": 0,
         "corpo": "tronco",
         "equipavel": True,
         "equipado": False
     },
+    "pistola": {
+        "carisma": 0,
+        "coragem": 2,
+        "inteligência": 0,
+        "força": 5,
+        "corpo": "mao",
+        "equipavel": True,
+        "equipado": False 
+    },
     "faca": {
         "carisma": 0,
-        "coragem": 1,
-        "intimidacao": 2,
+        "coragem": 0,
+        "inteligência": 0,
+        "força": 3,
+        "corpo": "mao",
+        "equipavel": True,
+        "equipado": False
+    },
+    "tabua": {
+        "carisma": 0,
+        "coragem": 0,
+        "inteligência": 0,
+        "força": 2,
         "corpo": "mao",
         "equipavel": True,
         "equipado": False
@@ -51,7 +66,8 @@ BONUS_DOS_ITENS = {
     "grampo": {
         "carisma": 0,
         "coragem": 0,
-        "intimidacao": 0,
+        "inteligência": 0,
+        "força": 0,
         "corpo": None,
         "equipavel": True,
         "equipado": False
@@ -59,19 +75,21 @@ BONUS_DOS_ITENS = {
     "chavecompena": {
         "carisma": 0,
         "coragem": 0,
-        "intimidacao": 0,
+        "inteligência": 0,
+        "força": 0,
         "corpo": None,
         "equipavel": True,
         "equipado": False
     },
-    "tabua": {
+    "ganchodeescalada": {
         "carisma": 0,
-        "coragem": 1,
-        "intimidacao": 1,
-        "corpo": "mao",
+        "coragem": 0,
+        "inteligência": 0,
+        "força": 0,
+        "corpo": None,
         "equipavel": True,
         "equipado": False
-    }
+    },
 }
 
 LUGARES_VASCULHADOS = {
@@ -139,5 +157,21 @@ LUGARES_VASCULHADOS = {
             "ajustar": False,
             "trocar": False
         }
+    },
+    "floresta": {
+        "vasculhada": False,
+        "rio": {
+            "vasculhado": False,
+            "caverna": {
+                "vasculhada": False,
+                "urso_morto": False,
+                "item_pego": False
+            }
+        },
+        "montanha": {
+            "vasculhada": False,
+            "caminho": False
+        }
+
     }
 }
