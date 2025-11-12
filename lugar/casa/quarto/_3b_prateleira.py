@@ -3,7 +3,7 @@ from .... import player
 
 @helpers.retry_on_inventory
 def prateleira():
-    if lugares_vasculhados['prateleira']['vasculhada']:
+    if lugares_vasculhados['casa']['prateleira']['vasculhada']:
         evento.cabecalho('info')
         print("Você já vasculhou as prateleiras e não encontrou mais nada.")
         return
@@ -17,23 +17,23 @@ def prateleira():
         escolhaPrateleira = helpers.pergunta('escolha', ['ambas a chave e o grampo'], ['chave', 'grampo', 'voltar'])
 
         if escolhaPrateleira == "chave":
-            if lugares_vasculhados['prateleira']['chave_pega']:
+            if lugares_vasculhados['casa']['prateleira']['chave_pega']:
                 evento.cabecalho('info')
                 print("Você já pegou a chave da prateleira.")
 
             else:
-                lugares_vasculhados['prateleira']['chave_pega'] = True
+                lugares_vasculhados['casa']['prateleira']['chave_pega'] = True
                 evento.adicionar(player.char, "chavecompena")
 
             escolhaUsarbanquinho = helpers.pergunta('escolha', ['o grampo de cabelo'], ['pegar', 'nao pegar'])
 
             if escolhaUsarbanquinho == "pegar":
-                if lugares_vasculhados['prateleira']['grampo_pego']:
+                if lugares_vasculhados['casa']['prateleira']['grampo_pego']:
                     evento.cabecalho('info')
                     print("Você já pegou o prisilia de cabelo da prateleira.")
 
                 else:
-                    lugares_vasculhados['prateleira']['grampo_pego'] = True
+                    lugares_vasculhados['casa']['prateleira']['grampo_pego'] = True
                     evento.adicionar(player.char, "grampo")
                 
                 evento.cabecalho('narrador')
@@ -44,8 +44,11 @@ def prateleira():
                 evento.cabecalho('narrador')
                 print("Você se levanta e sai de perto da prateleira.")
 
-                if lugares_vasculhados['prateleira']['grampo_pego'] and lugares_vasculhados['prateleira']['chave_pega']:
-                    lugares_vasculhados['prateleira']['vasculhada'] = True
+                if (
+                    lugares_vasculhados['casa']['prateleira']['grampo_pego'] and
+                    lugares_vasculhados['casa']['prateleira']['chave_pega']
+                    ):
+                    lugares_vasculhados['casa']['prateleira']['vasculhada'] = True
                     evento.cabecalho('info')
                     print("Você já pegou todos os itens interessantes da prateleira.")
                 return
@@ -59,23 +62,23 @@ def prateleira():
                 helpers.erro()
 
         elif escolhaPrateleira == "grampo":
-            if lugares_vasculhados['prateleira']['grampo_pego']:
+            if lugares_vasculhados['casa']['prateleira']['grampo_pego']:
                 evento.cabecalho('info')
                 print("Você já pegou a prisilia de cabelo da prateleira.")
 
             else:
-                lugares_vasculhados['prateleira']['grampo_pego'] = True
+                lugares_vasculhados['casa']['prateleira']['grampo_pego'] = True
                 evento.adicionar(player.char, "grampo")
 
             escolhaUsarbanquinho = helpers.pergunta('pergunta', ['uma chave decorada com uma pena'], ['pegar chave', 'nao pegar'])
 
             if escolhaUsarbanquinho == "pegarchave":
-                if lugares_vasculhados['prateleira']['chave_pega']:
+                if lugares_vasculhados['casa']['prateleira']['chave_pega']:
                     evento.cabecalho('info')
                     print("Você já pegou a chave com pena presa da prateleira.")
 
                 else:
-                    lugares_vasculhados['prateleira']['chave_pega'] = True
+                    lugares_vasculhados['casa']['prateleira']['chave_pega'] = True
                     evento.adicionar(player.char, "chavecompena")
 
                 evento.cabecalho('narrador')
@@ -86,8 +89,11 @@ def prateleira():
                 evento.cabecalho('narrador')
                 print("Você se levanta e sai de perto da prateleira.")
 
-                if lugares_vasculhados['prateleira']['grampo_pego'] and lugares_vasculhados['prateleira']['chave_pega']:
-                    lugares_vasculhados['prateleira']['vasculhada'] = True
+                if (
+                    lugares_vasculhados['casa']['prateleira']['grampo_pego'] and
+                    lugares_vasculhados['casa']['prateleira']['chave_pega']
+                    ):
+                    lugares_vasculhados['casa']['prateleira']['vasculhada'] = True
                     evento.cabecalho('info')
                     print("Você pegou todos os itens interessantes da prateleira.")
                 return

@@ -2,7 +2,7 @@ from ....core import evento, helpers, lugares_vasculhados, C
 
 def parquinho():
     while True:
-        if lugares_vasculhados['janela']['parquinho_vasculhado']:
+        if lugares_vasculhados['casa']['janela']['parquinho_vasculhado']:
             evento.cabecalho('info')
             print("Você já olhou para o parquinho enferrujado e viu tudo que havia de interessante.")
             return
@@ -12,7 +12,7 @@ def parquinho():
         escolha = helpers.pergunta("ação", ["bullying"], ["intervir", "ignorar"])
 
         if escolha == 'intervir':
-            lugares_vasculhados['janela']['parquinho_vasculhado'] = True
+            lugares_vasculhados['casa']['janela']['parquinho_vasculhado'] = True
             evento.cabecalho('narrador')
             print("Você pula da sua janela em direção ao parquinho enferrujado, só de se aproximar das crianças, elas fogem com medo, assim, salvando a criança de óculos.")
 
@@ -24,7 +24,7 @@ def parquinho():
             return
 
         elif escolha == 'ignorar':
-            lugares_vasculhados['janela']['parquinho_vasculhado'] = True
+            lugares_vasculhados['casa']['janela']['parquinho_vasculhado'] = True
             evento.cabecalho('narrador')
             print("Você decide ignorar a situação, afinal, você é um covarde.")
             return

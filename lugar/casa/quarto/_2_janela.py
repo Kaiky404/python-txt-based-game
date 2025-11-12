@@ -5,7 +5,7 @@ from ._2c_estabulo import estabulo
 
 @helpers.retry_on_inventory
 def janela():
-    if lugares_vasculhados['janela']['vasculhada']:
+    if lugares_vasculhados['casa']['janela']['vasculhada']:
         evento.cabecalho('info')
         print("Você já olhou todos os pontos interessantes da janela.")
         return
@@ -34,11 +34,11 @@ def janela():
             evento.erro()
         
         if (
-            lugares_vasculhados['janela']['predio_vasculhado'] and
-            lugares_vasculhados['janela']['parquinho_vasculhado'] and
-            lugares_vasculhados['janela']['estabulo_vasculhado']
+            lugares_vasculhados['casa']['janela']['predio_vasculhado'] and
+            lugares_vasculhados['casa']['janela']['parquinho_vasculhado'] and
+            lugares_vasculhados['casa']['janela']['estabulo_vasculhado']
         ):
-            lugares_vasculhados['janela']['vasculhada'] = True
+            lugares_vasculhados['casa']['janela']['vasculhada'] = True
             evento.cabecalho('info')
             print("Depois de observar todos os pontos interessantes da janela, você decide se afastar dela.")
             return

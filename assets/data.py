@@ -93,42 +93,53 @@ BONUS_DOS_ITENS = {
 }
 
 LUGARES_VASCULHADOS = {
-    "quarto": {
+
+    "casa": {
         "vasculhado": False,
-        "bronca_do_pai": False
+        "bronca_do_pai": False,
+        "guardaroupa": {
+            "vasculhado": False,
+            "portaquebrada": False,
+            "regata_pega": False,
+            "blazer_pego": False,
+            "tabua_pega": False
+        },
+        "cama": {
+            "vasculhada": False,
+            "faca_pega": False
+        },
+        "prateleira": {
+            "vasculhada": False,
+            "grampo_pego": False,
+            "chave_pega": False
+        },
+        "janela": {
+            "vasculhada": False,
+            "predio_vasculhado": False,
+            "parquinho_vasculhado": False,
+            "estabulo_vasculhado": False
+        },
     },
-    "guardaroupa": {
-        "vasculhado": False,
-        "portaquebrada": False,
-        "regata_pega": False,
-        "blazer_pego": False,
-        "tabua_pega": False
-    },
-    "cama": {
-        "vasculhada": False,
-        "faca_pega": False
-    },
-    "prateleira": {
-        "vasculhada": False,
-        "grampo_pego": False,
-        "chave_pega": False
-    },
-    "janela": {
-        "vasculhada": False,
-        "predio_vasculhado": False,
-        "parquinho_vasculhado": False,
-        "estabulo_vasculhado": False
-    },
-    "materia": {
+
+    "escola": {
+        "completada": False,
+        "materia": {
         "feita": False,
         "geo": False,
         "fis": False,
         "por": False,
         "his": False,
         "bio": False,
+        },
     },
+    
     "fazenda": {
         "vasculhada": False,
+        "cerca": {
+            "arrumada": False,
+            "ajustar": False,
+            "trocar": False
+        },
         "galinheiro": {
             "vasculhado": False,
             "pistola_pega": False,
@@ -152,14 +163,14 @@ LUGARES_VASCULHADOS = {
                 },
             }
         },
-        "cerca": {
-            "arrumada": False,
-            "ajustar": False,
-            "trocar": False
-        }
     },
+
     "floresta": {
         "vasculhada": False,
+        "montanha": {
+            "vasculhada": False,
+            "caminho": False
+        },
         "rio": {
             "vasculhado": False,
             "caverna": {
@@ -168,10 +179,6 @@ LUGARES_VASCULHADOS = {
                 "item_pego": False
             }
         },
-        "montanha": {
-            "vasculhada": False,
-            "caminho": False
-        }
 
     }
 }

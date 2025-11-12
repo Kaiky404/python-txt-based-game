@@ -2,7 +2,7 @@ from ....core import evento, helpers, lugares_vasculhados, C
 
 def predio():
     while True:
-        if lugares_vasculhados['janela']['predio_vasculhado']:
+        if lugares_vasculhados['casa']['janela']['predio_vasculhado']:
             evento.cabecalho('info')
             print("Você já olhou para o prédio grande e viu tudo que havia de interessante.")
             return
@@ -12,7 +12,7 @@ def predio():
         escolha = helpers.pergunta("ação", ["abuso"], ["intervir", "ignorar"])
 
         if escolha == 'intervir':
-            lugares_vasculhados['janela']['predio_vasculhado'] = True
+            lugares_vasculhados['casa']['janela']['predio_vasculhado'] = True
             evento.cabecalho('narrador')
             print("Você pula da sua janeka em direção ao prédio grande, sabuga os adolescentes na porrada e salva o gato.")
 
@@ -24,7 +24,7 @@ def predio():
             return
 
         elif escolha == 'ignorar':
-            lugares_vasculhados['janela']['predio_vasculhado'] = True
+            lugares_vasculhados['casa']['janela']['predio_vasculhado'] = True
             evento.cabecalho('narrador')
             print("Você decide ignorar a situação, afinal, você é um covarde ou odeia gatos.")
 

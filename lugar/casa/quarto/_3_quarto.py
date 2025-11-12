@@ -6,7 +6,7 @@ from ._3c_cama import cama
 @helpers.retry_on_inventory
 def quarto():
     while True:
-        if lugares_vasculhados['quarto']['vasculhado']:
+        if lugares_vasculhados['casa']['vasculhado']:
             evento.cabecalho('info')
             print("Você já olhou tudo do seu quarto e encontrou tudo que havia de interessante nele.")
             return
@@ -34,11 +34,11 @@ def quarto():
             evento.erro()
 
         if (
-            lugares_vasculhados['guardaroupa']['vasculhado'] and
-            lugares_vasculhados['cama']['vasculhada'] and
-            lugares_vasculhados['prateleira']['vasculhada']
+            lugares_vasculhados['casa']['guardaroupa']['vasculhado'] and
+            lugares_vasculhados['casa']['cama']['vasculhada'] and
+            lugares_vasculhados['casa']['prateleira']['vasculhada']
             ):
-            lugares_vasculhados['quarto']['vasculhado'] = True
+            lugares_vasculhados['casa']['vasculhado'] = True
             evento.cabecalho('info')
             print("Depois de observar todos os pontos interessantes do quarto, você decide fazer outra coisa.")
             return

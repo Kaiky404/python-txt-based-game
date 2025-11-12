@@ -7,10 +7,12 @@ def escola():
     while True:
         if not entrou:
             evento.cabecalho('narrador')
-            print(f"{player.char} caminha em direção à escola local, cumprimentando alguns conhecidos pelo caminho.")
-            print(f"{player.char} entra no perímetro da escola na exata hora que o guardinha está fechando o portão")
-            print(f"parece que {player.char} só vai poder sair quando participar de todas as aulas")
-            print(f"Ao entrar na escola, {player.char} não sabe em qual sala entrar. Mas se sentindo confiante nessa matéria, {player.char} decide entrar na aula de...")
+            print(
+                f"{player.char} caminha em direção à escola local, cumprimentando alguns conhecidos pelo caminho.\n"
+                "Entrando no perímetro dela na exata hora que o guardinha está fechando o portão\n"
+                f"parece que {player.char} só vai poder sair quando participar de todas as aulas\n"
+                f"Entrando no edifício, {player.char} não sabe em qual sala entrar. Mas se sentindo confiante nessa matéria, {player.char} decide entrar na aula de..."
+                )
             entrou = True
 
         escolhaMateria = helpers.pergunta(
@@ -20,39 +22,39 @@ def escola():
             )
 
         if escolhaMateria == 'geografia':
-            if lugares_vasculhados['materia']['geo']:
+            if lugares_vasculhados['escola']['materia']['geo']:
                 print(f"{player.char} já participou da matéria de {escolhaMateria}.")
                 continue
             else:
-                lugares_vasculhados['materia']['geo'] = True
+                lugares_vasculhados['escola']['materia']['geo'] = True
 
         elif escolhaMateria == 'fisica':
-            if lugares_vasculhados['materia']['fis']:
+            if lugares_vasculhados['escola']['materia']['fis']:
                 print(f"{player.char} já participou da matéria de {escolhaMateria}.")
                 continue
             else:
-                lugares_vasculhados['materia']['fis'] = True
+                lugares_vasculhados['escola']['materia']['fis'] = True
 
         elif escolhaMateria == 'portugues':
-            if lugares_vasculhados['materia']['por']:
+            if lugares_vasculhados['escola']['materia']['por']:
                 print(f"{player.char} já participou da matéria de {escolhaMateria}.")
                 continue
             else:
-                lugares_vasculhados['materia']['por'] = True
+                lugares_vasculhados['escola']['materia']['por'] = True
 
         elif escolhaMateria == 'historia':
-            if lugares_vasculhados['materia']['his']:
+            if lugares_vasculhados['escola']['materia']['his']:
                 print(f"{player.char} já participou da matéria de {escolhaMateria}.")
                 continue
             else:
-                lugares_vasculhados['materia']['his'] = True
+                lugares_vasculhados['escola']['materia']['his'] = True
 
         elif escolhaMateria == 'biologia':
-            if lugares_vasculhados['materia']['bio']:
+            if lugares_vasculhados['escola']['materia']['bio']:
                 print(f"{player.char} já participou da matéria de {escolhaMateria}.")
                 continue
             else:
-                lugares_vasculhados['materia']['bio'] = True
+                lugares_vasculhados['escola']['materia']['bio'] = True
         elif escolhaMateria == 'sair':
             # cena com guardinha: opção de sair na porrada, na lábia, ou não conseguir
             pass
@@ -75,13 +77,13 @@ def escola():
             continue
         
         if (
-            lugares_vasculhados['materia']['geo'] and
-            lugares_vasculhados['materia']['fis'] and
-            lugares_vasculhados['materia']['por'] and
-            lugares_vasculhados['materia']['his'] and
-            lugares_vasculhados['materia']['bio']
+            lugares_vasculhados['escola']['materia']['geo'] and
+            lugares_vasculhados['escola']['materia']['fis'] and
+            lugares_vasculhados['escola']['materia']['por'] and
+            lugares_vasculhados['escola']['materia']['his'] and
+            lugares_vasculhados['escola']['materia']['bio']
             ):
-            lugares_vasculhados['materia']['feita'] = True
+            lugares_vasculhados['escola']['completada'] = True
             evento.cabecalho('info')
             print("Depois de passar por todas as aulas da escola, o sinal toca e você pode ir embora.")
             return
