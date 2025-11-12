@@ -1,10 +1,7 @@
-from ...core import evento, helpers, lugares_vasculhados, C
+from ...core import evento, helpers, C
 from ..foradecasa.escola._1_escola import escola
 from ..foradecasa.fazenda._1_fazenda import fazenda
 from ..foradecasa.floresta._1_floresta import floresta
-
-# from ..core import escada
-# from ..casa.quarto._1_escada import escada
 
 def rua():
     from ..casa.quarto._1_escada import escada

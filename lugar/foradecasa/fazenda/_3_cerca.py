@@ -1,4 +1,4 @@
-from ....core import evento, helpers, C, lugares_vasculhados
+from ....core import evento, helpers, C, LUGARES_VASCULHADOS
 from .... import player
 from ._3b_trocar import trocar
 from ._3a_ajustar import ajustar
@@ -18,13 +18,13 @@ def cerca():
         situação = [f"{player.char} pode tentar"]
         opção = []
 
-        if not lugares_vasculhados['fazenda']['cerca']['ajustar']:
+        if not LUGARES_VASCULHADOS['fazenda']['cerca']['ajustar']:
             situação.append(f"ajustar a cerca")
             opção.append(f"ajustar")
         else:
             situação.append(f"ajustar a cerca (já fez isso)")
 
-        if not lugares_vasculhados['fazenda']['cerca']['trocar']:
+        if not LUGARES_VASCULHADOS['fazenda']['cerca']['trocar']:
             situação.append(f"trocar a madeira")
             opção.append(f"trocar")
         else:
@@ -40,9 +40,9 @@ def cerca():
             opção
         )
 
-        if escolhaCerca == 'ajustar' and not lugares_vasculhados['fazenda']['cerca']['ajustar']:
+        if escolhaCerca == 'ajustar' and not LUGARES_VASCULHADOS['fazenda']['cerca']['ajustar']:
             ajustar()
-        elif escolhaCerca == 'trocar'and not lugares_vasculhados['fazenda']['cerca']['trocar']:
+        elif escolhaCerca == 'trocar'and not LUGARES_VASCULHADOS['fazenda']['cerca']['trocar']:
             trocar()
         elif escolhaCerca == 'sair':
             return
@@ -50,10 +50,10 @@ def cerca():
             helpers.erro()
         
         if (
-            lugares_vasculhados['fazenda']['cerca']['trocar'] and
-            lugares_vasculhados['fazenda']['cerca']['ajustar']
+            LUGARES_VASCULHADOS['fazenda']['cerca']['trocar'] and
+            LUGARES_VASCULHADOS['fazenda']['cerca']['ajustar']
             ):
-            lugares_vasculhados['fazenda']['cerca']['arrumada'] = True
+            LUGARES_VASCULHADOS['fazenda']['cerca']['arrumada'] = True
             evento.head('info')
             print(f"Depois de trocar e ajustar a cerca no lugar, {player.char} decide fazer outra coisa.")
             return

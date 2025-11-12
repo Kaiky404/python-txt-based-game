@@ -1,9 +1,9 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 
 @helpers.retry_on_inventory
 def cama():
-    if lugares_vasculhados['casa']['cama']['vasculhada']:
+    if LUGARES_VASCULHADOS['casa']['cama']['vasculhada']:
         evento.cabecalho('info')
         print("Você já vasculhou debaixo da cama e não encontrou nada.")
         return
@@ -36,12 +36,12 @@ def cama():
                     print(f"Mas então, você descobre que a coisa escura era uma {C.YELLOW}faca enferrujada e ensanguentada{C.NORMAL}.")
 
                     evento.adicionar(player.char, "faca")
-                    lugares_vasculhados['casa']['cama']['faca_pega'] = True
+                    LUGARES_VASCULHADOS['casa']['cama']['faca_pega'] = True
 
                     evento.cabecalho('narrador')
                     print("Você pega a faca e deixa o fundo de sua cama.")
 
-                    lugares_vasculhados['casa']['cama']['vasculhada'] = True 
+                    LUGARES_VASCULHADOS['casa']['cama']['vasculhada'] = True 
                     return
 
                 elif escolhaCoisaescura == "desistirdacoisa":

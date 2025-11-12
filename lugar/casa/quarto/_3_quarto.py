@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from ._3a_guardaroupa import guardaroupa
 from ._3b_prateleira import prateleira
 from ._3c_cama import cama
@@ -6,7 +6,7 @@ from ._3c_cama import cama
 @helpers.retry_on_inventory
 def quarto():
     while True:
-        if lugares_vasculhados['casa']['vasculhado']:
+        if LUGARES_VASCULHADOS['casa']['vasculhado']:
             evento.cabecalho('info')
             print("Você já olhou tudo do seu quarto e encontrou tudo que havia de interessante nele.")
             return
@@ -28,17 +28,18 @@ def quarto():
             cama()
 
         elif escolhaQuarto == "voltar":
+            print(f"Você decide não olhar mais nada.")
             return
         
         else:
             evento.erro()
 
         if (
-            lugares_vasculhados['casa']['guardaroupa']['vasculhado'] and
-            lugares_vasculhados['casa']['cama']['vasculhada'] and
-            lugares_vasculhados['casa']['prateleira']['vasculhada']
+            LUGARES_VASCULHADOS['casa']['guardaroupa']['vasculhado'] and
+            LUGARES_VASCULHADOS['casa']['cama']['vasculhada'] and
+            LUGARES_VASCULHADOS['casa']['prateleira']['vasculhada']
             ):
-            lugares_vasculhados['casa']['vasculhado'] = True
+            LUGARES_VASCULHADOS['casa']['vasculhado'] = True
             evento.cabecalho('info')
             print("Depois de observar todos os pontos interessantes do quarto, você decide fazer outra coisa.")
             return

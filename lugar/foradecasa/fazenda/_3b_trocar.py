@@ -1,4 +1,4 @@
-from ....core import evento, helpers, C, lugares_vasculhados, mochila
+from ....core import evento, helpers, C, LUGARES_VASCULHADOS, MOCHILA
 from .... import player
 
 def trocar():
@@ -12,10 +12,10 @@ def trocar():
             print(f"Vendo que a madeira da cerca está podre, {player.char} procura em sua mochila por algo para substituir ela.")
             entrou = True
         
-        if 'tabua' in mochila:
+        if 'tabua' in MOCHILA:
             print(f"{player.char} pega a tábua que tinha guardado, retira a madeira podre e a subtitui pela a tábua.")
             evento.discartar(player.char, 'tabua')
-            lugares_vasculhados['fazenda']['cerca']['trocar'] = True
+            LUGARES_VASCULHADOS['fazenda']['cerca']['trocar'] = True
             return
         else:
             print(f"{player.char} não tem nada em sua mochila que possa usar para substituir a madeira podre.")

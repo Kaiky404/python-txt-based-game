@@ -1,5 +1,6 @@
 from ..core import C
-from ..assets.data import ATRIBUTOS as atributos, MOCHILA as mochila, BONUS_DOS_ITENS as bonus
+from ..assets.atributos_base import ATRIBUTOS
+from ..assets.itens import BONUS_DOS_ITENS, MOCHILA
 
 LAST_LOG_HEAD = None
 
@@ -11,45 +12,51 @@ def cabecalho(type: str):
 
             LAST_LOG_HEAD = type.upper()
 
+def skill_check(tenho, preciso):
+    if tenho >= preciso:
+        return True
+    else:
+        return False
+
 def dano(char, qtd: int, razao: str):
     cabecalho('dano')
-    atributos['vida'] -= qtd
-    if atributos['vida'] <= 0:
-        atributos['vida'] = 0
+    ATRIBUTOS['vida'] -= qtd
+    if ATRIBUTOS['vida'] <= 0:
+        ATRIBUTOS['vida'] = 0
         print(f"{char} tomou {qtd} de dano por {razao}.")
         print(f"{char} morreu!")
     else:
         print(f"{char} tomou {qtd} de dano por {razao}.")
-        print(f"{char} está com {atributos['vida']} de vida.")
+        print(f"{char} está com {ATRIBUTOS['vida']} de vida.")
 
 def cura(char, qtd, razao):
     cabecalho('heal')
-    atributos['vida'] += qtd
+    ATRIBUTOS['vida'] += qtd
     print(f"{char} curou {qtd} vida por {razao}.")
-    print(f"{char} está com {atributos['vida']} de vida.")
+    print(f"{char} está com {ATRIBUTOS['vida']} de vida.")
 
 def adicionar(char, item):
-    cabecalho('Item guardado na mochila')
-    mochila[item] = mochila.get(item, 0) + 1
+    cabecalho('Item guardado na MOCHILA')
+    MOCHILA[item] = MOCHILA.get(item, 0) + 1
     print(f"{char} obteve {item}")
 
 def discartar(char, item):
-    if item in mochila and mochila[item] > 0:
-        mochila[item] -= 1
-        if mochila[item] == 0:
-            del mochila[item]
-        cabecalho('Item descartado da mochila')
+    if item in MOCHILA and MOCHILA[item] > 0:
+        MOCHILA[item] -= 1
+        if MOCHILA[item] == 0:
+            del MOCHILA[item]
+        cabecalho('Item descartado da MOCHILA')
         print(f"{char} discartou {item}")
     else:
-        print(f"{char} não tem {item} na mochila")
+        print(f"{char} não tem {item} na MOCHILA")
 
 def equipar(char, item):
-    if item in bonus:
+    if item in BONUS_DOS_ITENS:
         cabecalho('Item equipado')
-        bonus[item]['equipado'] = True
-        bonus_output = "Bônus desse item: \n"
+        BONUS_DOS_ITENS[item]['equipado'] = True
+        BONUS_DOS_ITENS_output = "Bônus desse item: \n"
 
-        for key, value in bonus[item].items():
+        for key, value in BONUS_DOS_ITENS[item].items():
             if key in ('equipado', 'equipavel'):
                 continue
 
@@ -63,19 +70,19 @@ def equipar(char, item):
                 elif isinstance(value, str):
                     if key == 'corpo':
                         line = f"- Parte do corpo: {value}"
-            bonus_output += line
+            BONUS_DOS_ITENS_output += line
         print(f"{char} equipou {item}")
-        print(bonus_output)
+        print(BONUS_DOS_ITENS_output)
     else:
-        print(f"{char} não tem {item} na mochila.")
+        print(f"{char} não tem {item} na MOCHILA.")
 
-def desequipar(char, item, bonus):
-    if item in bonus:  
+def desequipar(char, item, BONUS_DOS_ITENS):
+    if item in BONUS_DOS_ITENS:  
         cabecalho('Item desequipado')
-        bonus[item]['equipado'] = False
-        bonus_output = "Bônus desse item: \n"
+        BONUS_DOS_ITENS[item]['equipado'] = False
+        BONUS_DOS_ITENS_output = "Bônus desse item: \n"
 
-        for key, value in bonus[item].items():
+        for key, value in BONUS_DOS_ITENS[item].items():
             if key in ('equipado', 'equipavel'):
                 continue
 
@@ -89,30 +96,8 @@ def desequipar(char, item, bonus):
                 elif isinstance(value, str):
                     if key == 'corpo':
                         line = f"- Parte do corpo: {value}"
-            bonus_output += line
+            BONUS_DOS_ITENS_output += line
         print(f"{char} desequipou {item}")
-        print(bonus_output)
+        print(BONUS_DOS_ITENS_output)
     else:
         print(f"'{item}' não tem bônus")
-
-def voltar(local_no_singular: str, plural: bool):
-    artigo = {
-        "parquinho": "do",
-        "estabulo": "do",
-        "predio": "do",
-        "cama": "da",
-        "prateleira": "da",
-        "janela": "da"
-    }
-    d = artigo.get(local_no_singular, "de")
-
-    cabecalho('narrador')
-    if plural:
-        print(f"Você se afasta {d}s {local_no_singular}s e volta para onde estava.")
-    else:
-        print(f"Você se afasta {d} {local_no_singular} e volta para onde estava.")
-
-def erro():
-    cabecalho('Mensagem de Erro')
-    print(f"Escolha inválida! Por favor, digite uma das opções apresentadas.")
-

@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 
 def caverna():
@@ -14,7 +14,7 @@ def caverna():
         situação = [f"{player.char} pode tentar"]
         opções = []
 
-        if not lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']:
+        if not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             situação.append("lutar contra o urso")
             opções.append("lutar")
             
@@ -25,7 +25,7 @@ def caverna():
             opções.append("sair")
             
 
-        if not lugares_vasculhados['floresta']['rio']['caverna']['item_pego'] and lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']:
+        if not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             situação.append("pegar a mochila que o urso estava guardando")
             opções.append("mochila")
 
@@ -39,7 +39,7 @@ def caverna():
             opções
         )
 
-        if escolhaCaverna == 'lutar' and not lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']:
+        if escolhaCaverna == 'lutar' and not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
 
             estrategias = [
                 'mirar seu ataque no focinho',
@@ -65,7 +65,7 @@ def caverna():
                     print(
                         f"Sem hesitar, {player.char} dá um golpe certeiro no focinho do urso com toda a sua força.\n"
                         f"Tamanha era a força, que o urso morreu na hora.")
-                    lugares_vasculhados['floresta']['rio']['caverna']['urso_morto'] = True
+                    LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto'] = True
 
                 else:
                     evento.cabecalho('narrador')
@@ -83,7 +83,7 @@ def caverna():
                     print(
                         f"Sem hesitar, {player.char} dá um golpe no ponto rachado da parede, fazendo com que um estalactite caia na cabeça do urso.\n"
                         f"A estalactite era pesada o suficiente para que o urso morresse na hora.")
-                    lugares_vasculhados['floresta']['rio']['caverna']['urso_morto'] = True
+                    LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto'] = True
 
                 else:
                     evento.cabecalho('narrador')
@@ -102,7 +102,7 @@ def caverna():
             else:
                 helpers.erro()
 
-        elif escolhaCaverna == 'mochila' and not lugares_vasculhados['floresta']['rio']['caverna']['item_pego'] and lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']:
+        elif escolhaCaverna == 'mochila' and not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             evento.cabecalho('narrador')
             print(f"Com o urso fora de seu caminho, {player.char} pega uma mochila empoirada do chão")
             evento.adicionar(player.char, 'grampo')
@@ -111,16 +111,16 @@ def caverna():
             player.add('inteligência', 2)
             evento.discartar(player.char, 'revista de sobrevivêncialismo')
             evento.adicionar(player.char, 'gancho de escalada')
-            lugares_vasculhados['floresta']['rio']['caverna']['item_pego'] = True
+            LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] = True
 
-        elif escolhaCaverna == 'voltar' and lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']:
+        elif escolhaCaverna == 'voltar' and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             return
 
         else:
             helpers.erro()
 
         if (
-            lugares_vasculhados['floresta']['rio']['caverna']['item_pego'] and
-            lugares_vasculhados['floresta']['rio']['caverna']['urso_morto']
+            LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and
+            LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']
             ):
-            lugares_vasculhados['floresta']['rio']['vasculhado'] = True
+            LUGARES_VASCULHADOS['floresta']['rio']['vasculhado'] = True

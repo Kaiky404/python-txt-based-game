@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 
 def montanha():
@@ -7,6 +7,6 @@ def montanha():
         print(f"{player.char} decide subir a montanha.\n"
             f"Passando sobre algumas arvores mortas e alguns buracos ele sobe toda a montanha.\n"
             f"E de lá de cima enxerga uma rota para sair da floresta.")
-        lugares_vasculhados['floresta']['montanha']['caminho'] = True
-        lugares_vasculhados['floresta']['montanha'] = True
+        LUGARES_VASCULHADOS['floresta']['montanha']['caminho'] = True
+        LUGARES_VASCULHADOS['floresta']['montanha'] = True
         return

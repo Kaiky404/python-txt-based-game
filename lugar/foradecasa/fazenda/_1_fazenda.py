@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2_galinheiro import galinheiro
 from ._3_cerca import cerca
@@ -11,13 +11,13 @@ def fazenda():
         situação = []
         opções = []
 
-        if not lugares_vasculhados['fazenda']['galinheiro']['vasculhado']:
+        if not LUGARES_VASCULHADOS['fazenda']['galinheiro']['vasculhado']:
             situação.append(f"{player.char} pode checar o galinheiro")
             opções.append(f"galinheiro")
         else:
             situação.append(f"{player.char} já checou o galinheiro")
 
-        if not lugares_vasculhados['fazenda']['cerca']['arrumada']:
+        if not LUGARES_VASCULHADOS['fazenda']['cerca']['arrumada']:
             situação.append(f"consertar a cerca dos caneiros")
             opções.append(f"cerca")
         else:
@@ -39,9 +39,9 @@ def fazenda():
             opções
             )
 
-        if escolhaFazenda == 'galinheiro' and not lugares_vasculhados['fazenda']['galinheiro']['vasculhado']:
+        if escolhaFazenda == 'galinheiro' and not LUGARES_VASCULHADOS['fazenda']['galinheiro']['vasculhado']:
             galinheiro()
-        elif escolhaFazenda == 'cerca' and not lugares_vasculhados['fazenda']['cerca']['arrumada']:
+        elif escolhaFazenda == 'cerca' and not LUGARES_VASCULHADOS['fazenda']['cerca']['arrumada']:
             cerca()
         elif escolhaFazenda == 'sair':
             return

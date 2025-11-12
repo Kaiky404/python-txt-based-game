@@ -1,5 +1,6 @@
 from .core import C
-from .assets.data import ATRIBUTOS as atributos, MOCHILA as mochila, BONUS_DOS_ITENS as bonus
+from .assets.atributos_base import ATRIBUTOS
+from .assets.itens import BONUS_DOS_ITENS, MOCHILA
 from .utils.evento import cabecalho
 from . import player
 
@@ -9,24 +10,24 @@ def set_char():
 def calc_bonus(stat_name=None):
     if stat_name:
         total_bonus = 0
-        for item, info in mochila.items():
-            if item in bonus and bonus[item].get("equipado", False):
-                total_bonus += bonus[item].get(stat_name, 0)
+        for item, info in MOCHILA.items():
+            if item in BONUS_DOS_ITENS and BONUS_DOS_ITENS[item].get("equipado", False):
+                total_bonus += BONUS_DOS_ITENS[item].get(stat_name, 0)
         return total_bonus
 
-    total = {attr: 0 for attr in atributos}
-    for item, info in mochila.items():
-        if item in bonus and bonus[item].get("equipado", False):
-            for attr in atributos:
-                total[attr] += bonus[item].get(attr, 0)
+    total = {attr: 0 for attr in ATRIBUTOS}
+    for item, info in MOCHILA.items():
+        if item in BONUS_DOS_ITENS and BONUS_DOS_ITENS[item].get("equipado", False):
+            for attr in ATRIBUTOS:
+                total[attr] += BONUS_DOS_ITENS[item].get(attr, 0)
     return total
 
 
 
 def get_total(stat_name):
-    base = atributos.get(stat_name, 0)
-    bonus = calc_bonus(stat_name)
-    return base + bonus
+    base = ATRIBUTOS.get(stat_name, 0)
+    BONUS_DOS_ITENS = calc_bonus(stat_name)
+    return base + BONUS_DOS_ITENS
 
 def estado(value):
     if value > 0:
@@ -45,10 +46,10 @@ def vida_estado(value):
         return C.RED
 
 def mostrar_atributos(char):
-    cabecalho(f"Atributos de {char}")
+    cabecalho(f"ATRIBUTOS de {char}")
     todos_os_bonus = calc_bonus()
-    for atributo in atributos:
-        atributo_val = atributos[atributo]
+    for atributo in ATRIBUTOS:
+        atributo_val = ATRIBUTOS[atributo]
         atributo_bonus = todos_os_bonus.get(atributo, 0)
         atributo_agora = atributo_val + atributo_bonus
         if atributo != 'vida':
@@ -61,8 +62,8 @@ def mostrar_atributos(char):
 def mostrar_mochila(char):
     while True:
         mostrar_atributos(player.char)
-        cabecalho(f"mochila de {char}")
-        print('DIGITE para acessar as funcionalidades de mochila')
+        cabecalho(f"MOCHILA de {char}")
+        print('DIGITE para acessar as funcionalidades de MOCHILA')
         print("> 'itens gerais'")
         print("> 'itens equipaveis'")
         print("> 'sair'")
@@ -72,24 +73,24 @@ def mostrar_mochila(char):
             return
 
         elif inv_choice == "itensgerais":
-            itens_gerais = [item for item in mochila if not bonus.get(item, {}).get('equipavel', False)]
+            itens_gerais = [item for item in MOCHILA if not BONUS_DOS_ITENS.get(item, {}).get('equipavel', False)]
 
             if itens_gerais:
                 print("Seus itens gerais:")
                 for item in itens_gerais:
-                    quantidade = mochila[item]
+                    quantidade = MOCHILA[item]
                     print(f" - {item} (x{quantidade})")
             else:
                 print("Você não tem itens gerais.")
 
         elif inv_choice == "itensequipaveis":
-            itens_equipaveis = [item for item in mochila if bonus.get(item, {}).get('equipavel', False)]
+            itens_equipaveis = [item for item in MOCHILA if BONUS_DOS_ITENS.get(item, {}).get('equipavel', False)]
 
             if itens_equipaveis:
                 print("Seus itens equipavais:")
                 for item in itens_equipaveis:
-                    quantidade = mochila[item]
-                    equipado = bonus[item].get('equipado', False)
+                    quantidade = MOCHILA[item]
+                    equipado = BONUS_DOS_ITENS[item].get('equipado', False)
                     tag_equipado = f"{C.GREEN} (Equipped){C.NORMAL}" if equipado else ""
                     print(f" - {item} (x{quantidade}){tag_equipado}")
 
@@ -106,8 +107,8 @@ def mostrar_mochila(char):
                         corpo = parte[1].lower()
                         achado = False
                         for item_name in itens_equipaveis:
-                            if bonus[item_name]['corpo'].lower() == corpo:
-                                bonus[item_name]['equipado'] = False
+                            if BONUS_DOS_ITENS[item_name]['corpo'].lower() == corpo:
+                                BONUS_DOS_ITENS[item_name]['equipado'] = False
                                 achado = True
                         if achado:
                             print(f"Todos os itens de {corpo} estão desequipados.")
@@ -123,12 +124,12 @@ def mostrar_mochila(char):
                 )
 
                 if nome_item_equipado:
-                    corpo = bonus[nome_item_equipado]['corpo']
+                    corpo = BONUS_DOS_ITENS[nome_item_equipado]['corpo']
                     for item_name in itens_equipaveis:
-                        if bonus[item_name]['corpo'] == corpo:
-                            bonus[item_name]['equipado'] = False
+                        if BONUS_DOS_ITENS[item_name]['corpo'] == corpo:
+                            BONUS_DOS_ITENS[item_name]['equipado'] = False
 
-                    bonus[nome_item_equipado]['equipado'] = True
+                    BONUS_DOS_ITENS[nome_item_equipado]['equipado'] = True
                     print(f"Você equipou o item {nome_item_equipado}.")
                 else:
                     print(f"{C.RED}Item não encontrado, ou você digitou errado.{C.NORMAL}")

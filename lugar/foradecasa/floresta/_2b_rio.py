@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2bb_caverna import caverna
 
@@ -17,7 +17,7 @@ def rio():
         situação = [f"{player.char} pode tentar"]
         opções = []
 
-        if not lugares_vasculhados['floresta']['rio']['caverna']['vasculhada']:
+        if not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['vasculhada']:
             situação.append("entrar na caverna")
             opções.append("caverna")
 

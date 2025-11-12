@@ -1,4 +1,4 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2_explorar import explorar
 
@@ -7,7 +7,7 @@ def floresta():
 
     while True:
         
-        if not lugares_vasculhados['floresta']['vasculhada']:
+        if not LUGARES_VASCULHADOS['floresta']['vasculhada']:
 
             if not entrou:
                 evento.cabecalho('narrador')
@@ -19,7 +19,7 @@ def floresta():
             situação = [f"{player.char} se perdeu na floresta e pode tentar"]
             opções = []
 
-            if not lugares_vasculhados['floresta']['vasculhada']:
+            if not LUGARES_VASCULHADOS['floresta']['vasculhada']:
                 situação.append("explorar a floresta mais a fundo")
                 opções.append("explorar")
             else:
@@ -34,7 +34,7 @@ def floresta():
                 opções
             )
 
-            if escolhaFloresta == 'explorar' and not lugares_vasculhados['floresta']['vasculhada']:
+            if escolhaFloresta == 'explorar' and not LUGARES_VASCULHADOS['floresta']['vasculhada']:
                 explorar()
 
             elif escolhaFloresta == 'voltar':

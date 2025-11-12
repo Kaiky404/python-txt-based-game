@@ -1,29 +1,39 @@
-from ....core import evento, lugares_vasculhados, C, helpers
+from ....core import evento, LUGARES_VASCULHADOS, C, helpers, skill_check
+from .... import player
 
 def estabulo():
     while True:
-        if lugares_vasculhados['casa']['janela']['estabulo_vasculhado']:
+        if LUGARES_VASCULHADOS['casa']['janela']['estabulo_vasculhado']:
             evento.cabecalho('info')
             print("Você já olhou para o estábulo e viu tudo que havia de interessante.")
             return
         
         evento.cabecalho('narrador')
-        print("Você pode ver alguns cavalos e galinhas no estábulo, mas além disso, algo chama sua atenção...")
-        escolha = helpers.pergunta("ação", [f"{C.YELLOW}uma garota de cabelo vermelho{C.NORMAL}"], ["acenar", "ignorar"])
+        print(f"Você pode ver alguns cavalos e galinhas no estábulo, mas além disso, {C.YELLOW}uma garota de cabelos vermelhos{C.NORMAL} acena para você")
+        escolha = helpers.pergunta(
+            "ação",
+            ["Alguém acenou para você, você pode acenar de volta ou só ignorar"],
+            ["acenar", "ignorar"])
 
         if escolha == 'acenar':
-            lugares_vasculhados['casa']['janela']['estabulo_vasculhado'] = True
+            LUGARES_VASCULHADOS['casa']['janela']['estabulo_vasculhado'] = True
             evento.cabecalho('narrador')
-            print("Você acena para a garota de cabelo vermelho, ela sorri e acena de volta.")
-
-            evento.cabecalho('mensagem do dev')
-            print("em alguma atualização adcionar stat de carisma e talvez um interesse romântico")
-            return
+            if skill_check(player.get('coragem'), 2):
+                print(
+                    "Sorrindo, você acena de volta para a garota.\n"
+                    "Ela acena de volta retribuindo o sorriso.")
+                player.add('carisma', 1)
+            else:
+                print(
+                    "Te faltando coragem, você não consegue se mover.\n"
+                    "Ela vira as costa e vai embora")
+                player.add('carisma', -1)
 
         elif escolha == 'ignorar':
-            lugares_vasculhados['casa']['janela']['estabulo_vasculhado'] = True
+            LUGARES_VASCULHADOS['casa']['janela']['estabulo_vasculhado'] = True
             evento.cabecalho('narrador')
-            print("Você decide ignorar a garota, afinal, você gosta de ser invisível.")
+            print("Você decide ignorar a garota.")
+            player.add('carisma', -1)
             return
         
         else:

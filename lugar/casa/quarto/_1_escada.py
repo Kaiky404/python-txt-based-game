@@ -1,10 +1,10 @@
-from ....core import evento, helpers, lugares_vasculhados, C
+from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ...rua._1_rua import rua
 
 def escada():
     
-    if not lugares_vasculhados['casa']['bronca_do_pai']:
+    if not LUGARES_VASCULHADOS['casa']['bronca_do_pai']:
 
         evento.cabecalho('narrador')
 
@@ -14,34 +14,41 @@ def escada():
             f"\n???: {player.char.upper()}, VENHA CÁ, SEU MALDITO!\n"
             )
         
-        lugares_vasculhados['casa']['bronca_do_pai'] = True
+        LUGARES_VASCULHADOS['casa']['bronca_do_pai'] = True
 
         print(
             "Chegando mais perto você reconhece a pessoa, é o seu velho pai, José.\n"
             "Ele olha para você com raiva, batendo o pé esperando alguma resposta..."
             )
 
-        resposta = helpers.pergunta('diálogo', ['seu pai furioso com você'], ['dizer desculpas', 'mandar ele se foder'])
+        resposta = helpers.pergunta(
+            'diálogo',
+            ['seu pai está furioso com você por acordar tarde, você pode dizer desculpas ou só ignorar ele.'],
+            ['desculpa', 'ignorar'])
 
         evento.cabecalho('narrador')
-        if resposta == 'dizerdesculpas':
+        if resposta == 'desculpa':
             print(
                 "José respira fundo e então fala:\n"
                 f"\nJosé: tá bom... mas da próxima vez não fica até tarde dormindo não, ouviu? Agora vai pegar madeira pra consertar a cerca das cabrita.\n"
                 )
 
-        elif resposta == 'Ignorá-lo':
-            print(f"\nJosé: Seu bastardo filho de uma figa! sai daqui e vê se volta com a cabeça no lugar!\n")
+        elif resposta == 'ignorar':
+            print(f"\nJosé: Seu bastardo inútil! sai daqui e vê se volta com a cabeça no lugar!\n")
 
         else:
             helpers.erro()
 
-    escolhaEscada = helpers.pergunta('escolha', ['opções de seguir seu dia'], ['subir escadas', 'sair de casa'])
+    escolhaEscada = helpers.pergunta(
+        'escolha',
+        ['você pode voltar para o seu quarto ou sair de casa'],
+        ['escada', 'sair'])
 
-    if escolhaEscada == 'subirescadas':
+    if escolhaEscada == 'escada':
         evento.cabecalho('narrador')
-        print(f'{player.char} então sobe as escadas até o seu quarto')
+        print(f'Você então sobe as escadas até o seu quarto')
         pass
 
-    elif escolhaEscada == 'sairdecasa':
+    elif escolhaEscada == 'sair':
+        print(f"Você decide sair de casa.")
         rua()

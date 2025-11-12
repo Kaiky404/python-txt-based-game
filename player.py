@@ -1,6 +1,6 @@
 char = None
 
-from .assets.data import ATRIBUTOS
+from .assets.atributos_base import ATRIBUTOS
 from . import character
 
 def get(atributo):
