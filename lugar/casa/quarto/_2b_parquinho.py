@@ -12,7 +12,7 @@ def parquinho():
         print(f"Ao olhar para o parquinho enferrujado, você avista algumas crianças brincando, mas outra coisa chama sua atenção, {C.YELLOW}um grupo de crianças está praticando bullying contra uma criança de óculos{C.NORMAL}.")
         escolha = helpers.pergunta(
             "ação",
-            ["Uma criança de óculos está sofrendo bullying de outras crianças, você pode tentar intervir ou só ignorar"],
+            ["Você pode tentar intervir ou só ignorar"],
             ["intervir", "ignorar"])
 
         if escolha == 'intervir':

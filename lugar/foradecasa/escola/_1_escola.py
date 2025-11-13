@@ -55,7 +55,6 @@ def escola():
             else:
                 LUGARES_VASCULHADOS['escola']['materia']['bio'] = True
         elif escolhaMateria == 'sair':
-            # cena com guardinha: opção de sair na porrada, na lábia, ou não conseguir
             pass
 
         print(f"Decidido então a entrar na aula de {escolhaMateria}, pensa que essa é também uma boa oportunidade de descansar um pouco.")
@@ -63,8 +62,10 @@ def escola():
 
         if escolhaEscola == 'vouestudar':
             evento.cabecalho('narrador')
-            print(f"Pensando no futuro e na necessidade de ficar mais inteligente, Você decide focar no que o professor falando e passando na lousa")
-            print(f"30 Minutos se passam e é quase fim da aula, porém, antes do sinal tocar, o professor aponta para uma questão na lousa e manda você responder ela...")
+            print(
+                "Pensando no futuro e na necessidade de ficar mais inteligente, Você decide focar no que o professor falando e passando na lousa\n"
+                "30 Minutos se passam e é quase fim da aula, porém, antes do sinal tocar, o professor aponta para uma questão na lousa e manda você responder ela..."
+                )
             materia(escolhaMateria)
 
         elif escolhaEscola == 'voudescansar':

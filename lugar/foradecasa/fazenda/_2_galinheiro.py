@@ -11,12 +11,12 @@ def galinheiro():
         evento.cabecalho('narrador')
 
         if not entrou:
-            print(f"E então {player.char} decide checar o galinheiro")
+            print(f"E então você decide checar o galinheiro")
             entrou = True
         
         print(f"Ele enfia sua cabeça dentro do galinheiro, conseguindo ver algumas coisas...")
 
-        situação = [f"Dentro do galinheiro, {player.char} pode ver"]
+        situação = [f"Dentro do galinheiro, você pode ver"]
         ação = []
 
         if not LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou']:
@@ -44,12 +44,12 @@ def galinheiro():
 
             if not LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou']: 
                 evento.cabecalho('narrador')
-                print(f"E então {player.char} decide tentar tirar a galinha de cima do ninho")
+                print(f"E então você decide tentar tirar a galinha de cima do ninho")
                 print(f"Ele pensa em algumas alternativas como tentar empurrar a galinha ou atraí-la com algo")
 
                 escolhaGalinha = helpers.pergunta(
                     'ação',
-                    [f'{player.char} pode tentar chamar a atenção da galinha para longe do ninho ou deixar ela em paz'],
+                    [f'Você pode tentar chamar a atenção da galinha para longe do ninho ou deixar ela em paz'],
                     ['atrair', 'sair']
                 )
 
@@ -57,8 +57,9 @@ def galinheiro():
                     atrair()
                 
                 elif escolhaGalinha == 'sair':
-                    print(f"{player.char} decide deixar a galinha em paz por enquanto.")
+                    print(f"Você decide deixar a galinha em paz por enquanto.")
                     break
+
                 else:
                     helpers.erro()
             else:
@@ -71,7 +72,7 @@ def galinheiro():
                 evento.cabecalho('narrador')
                 if escolhaCaixa == 'abrir':
                     if LUGARES_VASCULHADOS.get('prateleira', {}).get('chave_pega'):
-                        print(f"{player.char} abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
+                        print(f"Você abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
                         evento.adicionar(player.char, 'pistola')
                         LUGARES_VASCULHADOS['fazenda']['galinheiro']['pistola_pega'] = True
                         return
@@ -79,6 +80,7 @@ def galinheiro():
 
                 elif escolhaCaixa == 'sair':
                     print(f"{player.char} decide largar a caixa lá por agora.")
+                    break
 
                 else:
                     helpers.erro()

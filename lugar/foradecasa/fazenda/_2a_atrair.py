@@ -43,11 +43,11 @@ def atrair():
             opção
         )
 
-        ações = [f'{player.char} pode arremessar o/a {escolhaAtrair} ou larga-lo/a perto da galinha.']
+        ações = [f'Você pode arremessar o/a {escolhaAtrair} ou larga-lo/a perto da galinha.']
         opções = ['arremessar', 'largar']
 
-        arremessar = f"E então {player.char} arremessa o/a {escolhaAtrair} em direção da galinha.\n"
-        largar = f"E então {player.char} larga o/a {escolhaAtrair} perto da galinha.\n"
+        arremessar = f"E então você arremessa o/a {escolhaAtrair} em direção da galinha.\n"
+        largar = f"E então você larga o/a {escolhaAtrair} perto da galinha.\n"
 
         evento.cabecalho('narrador')
         print(f"{player.char} pega o/a {escolhaAtrair} na mão e pensa se é melhor arremessar ou deixá-lo/a perto da galinha")        
@@ -64,6 +64,7 @@ def atrair():
             if escolhaAcao == 'arremessar':
                 print(f"{arremessar}\n"
                       f"A galinha cheira a {escolhaAtrair} um pouco e cisca pra longe, meio que espirrando.")
+                player.add('força', 1)
                 LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['casca']['arremessado'] = True
                 sucesso = True
 
@@ -93,6 +94,7 @@ def atrair():
                       f"A galinha recebe a {escolhaAtrair} em cheio, olha em direção do {player.char} e começa a correr.\n"
                       f"{player.char} sem saber o que fazer, fica parado igual a uma planta.\n"
                       f"A galinha então o ataca, bicando um de seus olhos e arrancando-o fora!")
+                player.add('coragem', 1)
                 LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['pedra']['arremessado'] = True
                 evento.dano(player.char, 50, 'ter o olho arrancado')
 
@@ -125,6 +127,7 @@ def atrair():
             elif escolhaAcao == 'largar':
                 print(f"{largar}\n"
                       f"A galinha, curiosa, sobe em cima do {escolhaAtrair} e começa a ciscar.")
+                player.add('inteligência', 1)
                 LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['mato']['largado'] = True
                 sucesso = True
 
@@ -147,7 +150,7 @@ def atrair():
             LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou'] = True
             escolhaCaixa = helpers.pergunta(
                 'ação',
-                [f'{player.char} tenta abrir a caixa?'],
+                [f'Você tenta abrir a caixa?'],
                 ['abrir', 'sair']
             )
 

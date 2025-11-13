@@ -15,7 +15,7 @@ def quarto():
         print("Enquanto você olha ao redor do seu quarto...")
         escolhaQuarto = helpers.pergunta(
             "escolha",
-            [f"um {C.YELLOW}guarda-roupa{C.NORMAL}, {C.YELLOW}algumas prateleiras{C.NORMAL} e {C.YELLOW}debaixo da sua cama{C.NORMAL}."],
+            [f"Você pode olhar um {C.YELLOW}guarda-roupa{C.NORMAL}, {C.YELLOW}algumas prateleiras{C.NORMAL} e {C.YELLOW}debaixo da sua cama{C.NORMAL}."],
             ["guardaroupa", "cama", "prateleira", "voltar"])
 
         if escolhaQuarto == "guardaroupa":

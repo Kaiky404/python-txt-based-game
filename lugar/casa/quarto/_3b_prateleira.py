@@ -14,7 +14,10 @@ def prateleira():
         print(f"Na prateleira vermelha, há uma {C.YELLOW}chave com uma pena presa{C.NORMAL} e uma {C.YELLOW}prisilía de cabelo{C.NORMAL}.")
         print("Porém essa prateleira é muito alta para alcançá-la normalmente, então você vai e pega um banquinho de madeira para alcançá-la.")
 
-        escolhaPrateleira = helpers.pergunta('escolha', ['ambas a chave e o grampo'], ['chave', 'grampo', 'voltar'])
+        escolhaPrateleira = helpers.pergunta(
+            'escolha',
+            ['Você pode pegar ambas a chave e o grampo'],
+            ['chave', 'grampo', 'voltar'])
 
         if escolhaPrateleira == "chave":
             if LUGARES_VASCULHADOS['casa']['prateleira']['chave_pega']:
@@ -70,9 +73,12 @@ def prateleira():
                 LUGARES_VASCULHADOS['casa']['prateleira']['grampo_pego'] = True
                 evento.adicionar(player.char, "grampo")
 
-            escolhaUsarbanquinho = helpers.pergunta('pergunta', ['uma chave decorada com uma pena'], ['pegar chave', 'nao pegar'])
+            escolhaUsarbanquinho = helpers.pergunta(
+                'pergunta',
+                ['Em cima da prateleira tem uma chave decorada com uma pena'],
+                ['pegar', 'sair'])
 
-            if escolhaUsarbanquinho == "pegarchave":
+            if escolhaUsarbanquinho == "pegar":
                 if LUGARES_VASCULHADOS['casa']['prateleira']['chave_pega']:
                     evento.cabecalho('info')
                     print("Você já pegou a chave com pena presa da prateleira.")
@@ -98,7 +104,7 @@ def prateleira():
                     print("Você pegou todos os itens interessantes da prateleira.")
                 return
 
-            elif escolhaUsarbanquinho == "naopegar":
+            elif escolhaUsarbanquinho == "sair":
                 evento.cabecalho('narrador')
                 print("Você decide deixar a chave onde está.")
                 return

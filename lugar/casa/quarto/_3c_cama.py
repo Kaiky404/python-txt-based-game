@@ -12,9 +12,12 @@ def cama():
         evento.cabecalho('narrador')
         print(F"Quando você move o pescoço para ver debaixo da cama, {C.RED}seu pescoço dói{C.NORMAL}. Passando a mão sobre ele, {C.RED}você nota um hematoma{C.NORMAL}. Tocar nele faz a dor piorar.")
         
-        escolhaCama = helpers.pergunta('escolha', ['debaixo da cama'], ['olhar debaixo', 'nao olhar'])
+        escolhaCama = helpers.pergunta(
+            'escolha',
+            ['Você pode olhar debaixo da cama'],
+            ['olhar', 'sair'])
 
-        if escolhaCama == "olhardebaixo":
+        if escolhaCama == "olhar":
             evento.cabecalho('narrador')
             print("Quando você move a cabeça para ver debaixo da cama, seu pescoço dói, mas você ignora.")
 
@@ -24,9 +27,12 @@ def cama():
             print(f"Lá, embaixo do seu colchão, {C.YELLOW}você nota algo escuro{C.NORMAL}.")
 
             while True:
-                escolhaCoisaescura = helpers.pergunta('pergunta', ['algo escuro'], ['esticar pescoco', 'desistir da coisa'])
+                escolhaCoisaescura = helpers.pergunta(
+                    'pergunta',
+                    ['Você pode tentar pegar essa coisa'],
+                    ['tentar', 'sair'])
 
-                if escolhaCoisaescura == "esticarpescoco":
+                if escolhaCoisaescura == "tentar":
                     evento.cabecalho('narrador')
                     print("Quando você move a cabeça mais perto, seu pescoço dói mais.")
 
@@ -44,7 +50,7 @@ def cama():
                     LUGARES_VASCULHADOS['casa']['cama']['vasculhada'] = True 
                     return
 
-                elif escolhaCoisaescura == "desistirdacoisa":
+                elif escolhaCoisaescura == "sair":
                     evento.cabecalho('narrador')
                     print("Você decide que a dor não vale a pena e retira a cabeça.")
                     return
@@ -52,7 +58,7 @@ def cama():
                 else:
                     helpers.erro()
 
-        elif escolhaCama == "naoolhar":
+        elif escolhaCama == "sair":
             evento.cabecalho('narrador')
             print("Você decide que a dor não vale a pena e se deita novamente.")
             return

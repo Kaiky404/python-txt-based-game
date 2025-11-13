@@ -9,10 +9,10 @@ def estabulo():
             return
         
         evento.cabecalho('narrador')
-        print(f"Você pode ver alguns cavalos e galinhas no estábulo, mas além disso, {C.YELLOW}uma garota de cabelos vermelhos{C.NORMAL} acena para você")
+        print(f"Você pode ver {C.YELLOW}uma garota de cabelos vermelhos{C.NORMAL} acena para você")
         escolha = helpers.pergunta(
             "ação",
-            ["Alguém acenou para você, você pode acenar de volta ou só ignorar"],
+            ["Você pode acenar de volta ou só ignorar"],
             ["acenar", "ignorar"])
 
         if escolha == 'acenar':

@@ -11,7 +11,7 @@ def escada():
         print(
             "Você se levanta, pôe suas chinelas, e começa a descer as escadas.\n"
             "Quando você está para enxergar alguém na cozinha, outra pessoa grita com você.\n"
-            f"\n???: {player.char.upper()}, VENHA CÁ, SEU MALDITO!\n"
+            f"\n???: {player.char.upper()}, VENHA CÁ!!\n"
             )
         
         LUGARES_VASCULHADOS['casa']['bronca_do_pai'] = True
@@ -23,18 +23,20 @@ def escada():
 
         resposta = helpers.pergunta(
             'diálogo',
-            ['seu pai está furioso com você por acordar tarde, você pode dizer desculpas ou só ignorar ele.'],
+            ['seu pai está furioso com você por ter acordado tarde, você pode dizer desculpas ou só ignorar ele.'],
             ['desculpa', 'ignorar'])
 
         evento.cabecalho('narrador')
         if resposta == 'desculpa':
             print(
                 "José respira fundo e então fala:\n"
-                f"\nJosé: tá bom... mas da próxima vez não fica até tarde dormindo não, ouviu? Agora vai pegar madeira pra consertar a cerca das cabrita.\n"
+                f"\nJosé: tá bom... mas da próxima vez não fica até tarde dormindo não, ouviu? Agora vai consertar a cerca dos carneiros.\n"
                 )
+            player.add('força', 1)
 
         elif resposta == 'ignorar':
-            print(f"\nJosé: Seu bastardo inútil! sai daqui e vê se volta com a cabeça no lugar!\n")
+            print(f"\nJosé: Seu inútil! sai daqui e vê se volta com a cabeça no lugar!\n")
+            player.add('coragem', -1)
 
         else:
             helpers.erro()

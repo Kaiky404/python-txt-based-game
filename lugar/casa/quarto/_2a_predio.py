@@ -12,7 +12,7 @@ def predio():
         print(f"Ao olhar para o prédio grande, você vê alguns trabalhadores trabalhando normalmente, mas algo chama sua atenção, {C.YELLOW}um grupo de adolescentes está maltratando um gato{C.NORMAL}.")
         escolha = helpers.pergunta(
             "ação",
-            [f"Uma gato está sendo maltratado por adolecentes, você pode tentar intervir ou só ignorar"],
+            [f"Você pode tentar intervir ou só ignorar"],
             ["intervir", "ignorar"])
 
         if escolha == 'intervir':

@@ -18,7 +18,7 @@ def janela():
         print(f"Em frente à sua janela, três pontos chamam sua atenção...")
         LookChoice = helpers.pergunta(
             "pergunta",
-            [f"um {C.YELLOW}estábulo{C.NORMAL}, um {C.YELLOW}parquinho enferrujado{C.NORMAL} e um {C.YELLOW}prédio grande{C.NORMAL}"],
+            [f"Você pode olhar o {C.YELLOW}estábulo{C.NORMAL}, o {C.YELLOW}parquinho enferrujado{C.NORMAL} ou o {C.YELLOW}prédio grande{C.NORMAL}"],
             ["estabulo", "parquinho", "predio", "sair"])
 
         if LookChoice == "predio":

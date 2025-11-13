@@ -18,6 +18,7 @@ def materia(materia):
             if respostaMateria == 'porcausadacurvaturadaterra':
                 evento.cabecalho('narrador')
                 print(f"Helena te dá um sorriso e diz: Parabéns, {player.char}, é exatamente isso! O sol nasce mais cedo a leste porque a Terra é esférica e a terra viaja de oeste para leste, fazendo com que o pessoal que mora no leste enxergue o sol primeiro.")
+                player.add('inteligência', 1)
                 return
             else:
                 evento.cabecalho('narrador')
@@ -42,6 +43,7 @@ def materia(materia):
             if respostaMateria == 'porcausadaaltitude':
                 evento.cabecalho('narrador')
                 print(f"Gustav te dá um sorriso e diz: Parabéns, {player.char}, é exatamente isso! A temperatura diminui com a altitude porque o ar fica menos denso e tem menor capacidade de reter calor — o calor vem mais do chão aquecido do que do ar em si.")
+                player.add('inteligência', 1)
                 return
             else:
                 evento.cabecalho('narrador')
@@ -66,6 +68,7 @@ def materia(materia):
             if respostaMateria == 'metafora':
                 evento.cabecalho('narrador')
                 print(f"Clarice te dá um sorriso e diz: Parabéns, {player.char}, é exatamente isso! É uma metáfora, sim! Usar “tropeçar” no sentido figurado pra “errar ao falar”.")
+                player.add('inteligência', 1)
                 return
             else:
                 evento.cabecalho('narrador')
@@ -90,6 +93,7 @@ def materia(materia):
             if respostaMateria == 'idademedia':
                 evento.cabecalho('narrador')
                 print(f"Artur te dá um sorriso e diz: Parabéns, {player.char}, é exatamente isso! As escolas com professores, alunos e ensino organizado começaram mesmo a se formar na Idade Média, principalmente ligadas à Igreja Católica.")
+                player.add('inteligência', 1)
                 return
             else:
                 evento.cabecalho('narrador')
@@ -114,6 +118,7 @@ def materia(materia):
             if respostaMateria == 'desenvolvimentodocerebro':
                 evento.cabecalho('narrador')
                 print(f"Marina te dá um sorriso e diz: Parabéns, {player.char}, é exatamente isso! A principal característica que permite linguagem e pensamento é o desenvolvimento do cérebro, com o nosso córtex cerebral altamente desenvolvido.")
+                player.add('inteligência', 1)
                 return
             else:
                 evento.cabecalho('narrador')

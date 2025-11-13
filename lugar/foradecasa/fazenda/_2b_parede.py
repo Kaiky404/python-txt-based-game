@@ -23,5 +23,6 @@ def parede():
         else:
             print(f"Depois disso, você volta a se concentrar na parede, e então lê o rabisco:\n"
                   f"'A galinha protege o que brilha, mas quem limpa nunca acha o que está em cima.'")
+            player.add('inteligencia', 1)
             LUGARES_VASCULHADOS['fazenda']['galinheiro']['rabisco_lido'] = True
             return

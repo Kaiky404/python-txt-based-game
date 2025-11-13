@@ -25,13 +25,16 @@ def dano(char, qtd: int, razao: str):
         ATRIBUTOS['vida'] = 0
         print(f"{char} tomou {qtd} de dano por {razao}.")
         print(f"{char} morreu!")
+        quit()
     else:
         print(f"{char} tomou {qtd} de dano por {razao}.")
         print(f"{char} está com {ATRIBUTOS['vida']} de vida.")
 
 def cura(char, qtd, razao):
-    cabecalho('heal')
+    cabecalho('cura')
     ATRIBUTOS['vida'] += qtd
+    if ATRIBUTOS['vida'] >= 100:
+        ATRIBUTOS['vida'] = 100
     print(f"{char} curou {qtd} vida por {razao}.")
     print(f"{char} está com {ATRIBUTOS['vida']} de vida.")
 

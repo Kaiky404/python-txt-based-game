@@ -35,7 +35,10 @@ def guardaroupa():
                     print("Você já pegou todas as roupas interessantes do guarda-roupa e já vasculhou a pilha de madeira.")
                     return
                 
-                escolhaRoupa = helpers.pergunta('pergunta', ['algumas roupas que você pode pegar'], ['regata', 'blazer', 'tabua', 'voltar'] )
+                escolhaRoupa = helpers.pergunta(
+                    'pergunta',
+                    ['No guarda-roupa tem algumas roupas que você pode pegar'],
+                    ['regata', 'blazer', 'tabua', 'voltar'] )
 
                 if escolhaRoupa == "regata":
                     if LUGARES_VASCULHADOS['casa']['guardaroupa']['regata_pega']:

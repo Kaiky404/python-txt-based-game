@@ -11,7 +11,7 @@ def rua():
 
         caminho = helpers.pergunta(
             'escolha',
-            ['o caminho para ir para a escola, sua fazenda, floresta ou casa'],
+            ['Você pode ver o caminho para ir para a escola, sua fazenda, floresta ou casa'],
             ['escola', 'fazenda', 'floresta', 'casa'])
 
         if caminho == "escola":

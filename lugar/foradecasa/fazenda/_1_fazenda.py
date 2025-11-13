@@ -28,9 +28,9 @@ def fazenda():
         
         if not entrou:
             evento.cabecalho('narrador')
-            print(f"{player.char} caminha em direção a fazenda da sua família.\n"
-                  f"Ao chegar, {player.char} vê os campos verdes e os pastos cheios de gado.\n"
-                  f"Parado em frente a um paiol, {player.char} decide o que fazer.")
+            print(f"Você caminha em direção a fazenda da sua família.\n"
+                  f"Ao chegar, você pode ver os campos verdes e os pastos cheios de gado.\n"
+                  f"Parado em frente a um paiol, você decide o que fazer.")
             entrou = True
         
         escolhaFazenda = helpers.pergunta(
