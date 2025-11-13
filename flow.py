@@ -3,44 +3,46 @@ from .utils.helpers import retry_on_inventory
 from .lugar.core import janela, quarto
 from .lugar.casa.quarto._1_escada import escada
 from . import player
-from .visuals import jose, maria, char
+from . import visuals
 
 #GAME FLOW
 @retry_on_inventory
 def principal():
     evento.cabecalho('menssagem do dev')
     print(F"{C.BLUE}Seja bem-vindo à beta de The Village")
+    print(visuals.introdução)
     print(F"{C.BLUE}Este é um jogo de aventura em texto onde suas escolhas moldam a história.")
+    print(f"Para acessar o seu inventário digite {C.YELLOW}'inv'{C.NORMAL} e para sair do jogo digite {C.YELLOW}'quit'{C.NORMAL}")
 
     evento.cabecalho('pergunta')
     set_char()
 
     evento.cabecalho('narrador')
-    print(f"Você é {C.MAGENTA}{player.char}{C.NORMAL}, um jovem de 19 anos que vive em um {C.YELLOW}vilarejo conectado ao mundo exterior por um cruzamento famoso.")
-    print(F"Seus pais são os fazendeiros locais, {C.YELLOW}José {C.NORMAL}e {C.YELLOW}Maria{C.NORMAL}. Eles são {C.YELLOW}filhos dos fundadores do vilarejo{C.NORMAL}. Você não tem nenhum outro parente.")
-    print(jose, maria, char)
+    print(f"Você é {C.MAGENTA}{player.char}{C.NORMAL}")
+    print(visuals.char)
+    print(f"um jovem de 19 anos que vive em um {C.YELLOW}vilarejo conectado ao mundo exterior por um cruzamento famoso.")
+    print(f"Seus pais são os fazendeiros locais, {C.YELLOW}José {C.NORMAL}e {C.YELLOW}Maria{C.NORMAL}")
+    print(visuals.joseEmaria)
+    print(f"Eles são {C.YELLOW}filhos dos fundadores do vilarejo{C.NORMAL}. Você não tem nenhum outro parente.")
     print("Você acorda em sua cama, o sol está aparecendo em sua janela. E com isso, o som dos estudantes passando pela sua casa")
-    print(f"No seu criado mudo você vê sua {C.YELLOW}camisa favorita{C.NORMAL}")
+    print(f"Do seu criado mudo você pega sua {C.YELLOW}camisa favorita{C.NORMAL}")
     evento.adicionar(player.char, "mangalonga")
     while True:
-        escolhaPrincipal = helpers.pergunta('escolha', ['lugares interessantes no seu quarto'], ['descer escadas', 'olhar janela', 'olhar quarto'])
+        escolhaPrincipal = helpers.pergunta('escolha', ['Você tem lugares interessantes no seu quarto, nele você pode olhar a janela, olhar o quarto ou descer a escada'], ['quarto', 'janela', 'escada'])
 
         if escolhaPrincipal is None:
             continue
 
-        if escolhaPrincipal == "descerescadas":
-            escada()
-            pass
-
-        elif escolhaPrincipal == "olharjanela":
-            janela()
-            pass
-
-        elif escolhaPrincipal == "olharquarto":
+        if escolhaPrincipal == "quarto":
             quarto()
-            pass
+
+        elif escolhaPrincipal == "escada":
+            escada()
+
+        elif escolhaPrincipal == "janela":
+            janela()
 
         else:
-            helpers.erro()
+            print("tente novamente")
 
 principal()

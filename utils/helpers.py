@@ -1,7 +1,7 @@
 from ..assets.colors import C
 from ..character import mostrar_mochila
 from .. import player
-from .evento import cabecalho, erro
+from .evento import cabecalho
 
 class InventoryInterrupt(Exception):
     pass
@@ -23,6 +23,8 @@ def choice(prompt):
         if user_input.lower() == 'inv':
             mostrar_mochila(player.char)
             return None
+        elif user_input.lower() == 'quit':
+            quit()
         return user_input.lower()
     
 def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
@@ -39,5 +41,5 @@ def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
             return escolha.strip().lower().replace(' ', '')
 
         else:
-            erro()
+            print("tente novamente")
             continue
