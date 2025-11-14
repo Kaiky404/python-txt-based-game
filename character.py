@@ -5,9 +5,12 @@ from .utils.evento import cabecalho
 from . import player
 
 def set_char():
+    """Define o nome do personagem, que será usado em todo o código"""
     player.char = input(f"{C.MAGENTA}Primeiro de tudo, qual o seu primeiro nome? {C.NORMAL}").lower().capitalize()
+    return player.char
 
 def calc_bonus(stat_name=None):
+    """Calcula o bonus do item em questão"""
     if stat_name:
         total_bonus = 0
         for item, info in MOCHILA.items():
@@ -25,11 +28,13 @@ def calc_bonus(stat_name=None):
 
 
 def get_total(stat_name):
+    """Soma os atributos base e soma com os dos bonus"""
     base = ATRIBUTOS.get(stat_name, 0)
     BONUS_DOS_ITENS = calc_bonus(stat_name)
     return base + BONUS_DOS_ITENS
 
 def estado(value):
+    """Muda a cor da string de dependendo"""
     if value > 0:
         return C.GREEN
     elif value < 0:
@@ -38,6 +43,7 @@ def estado(value):
         return C.NORMAL
 
 def vida_estado(value):
+    """Muda a cor da string de vida de dependendo"""
     if value > 75:
         return C.GREEN
     elif value > 50:
@@ -46,6 +52,7 @@ def vida_estado(value):
         return C.RED
 
 def mostrar_atributos(char):
+    """Printa os atributos do personagem"""
     cabecalho(f"ATRIBUTOS de {char}")
     todos_os_bonus = calc_bonus()
     for atributo in ATRIBUTOS:
@@ -60,6 +67,7 @@ def mostrar_atributos(char):
             print(f"{atributo}: {color}{atributo_agora}{C.NORMAL}")
 
 def mostrar_mochila(char):
+    """Mochila, aqui sendo capaz de equipar e vizualizar os itens que tiver"""
     while True:
         mostrar_atributos(player.char)
         cabecalho(f"MOCHILA de {char}")

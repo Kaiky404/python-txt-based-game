@@ -4,9 +4,11 @@ from .assets.atributos_base import ATRIBUTOS
 from . import character
 
 def get(atributo):
+    """Pega o valor do atributo atual do personagem"""
     return character.get_total(atributo)
 
-def add(attr, value):
-    """Aumenta o valor base do atributo (não afeta bônus)."""
-    ATRIBUTOS[attr] = ATRIBUTOS.get(attr, 0) + value
-    print(f"{attr.capitalize()} +{value}")
+def add(atributo, value):
+    """Aumenta o valor base do atributo"""
+    ATRIBUTOS[atributo] = ATRIBUTOS.get(atributo, 0) + value
+    sinal = '+' if value >= 0 else ''
+    print(f"{atributo.capitalize()} {sinal}{value}")

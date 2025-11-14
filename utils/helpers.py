@@ -7,6 +7,7 @@ class InventoryInterrupt(Exception):
     pass
 
 def retry_on_inventory(func):
+    """Envelopa a função em wrapper para suportar a interrupção de abrir o inventário"""
     from functools import wraps
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -18,6 +19,7 @@ def retry_on_inventory(func):
     return wrapper
 
 def choice(prompt):
+    """Permite que, durante escolhas, escrever 'inv' ou 'quit', opções fora do esperado"""
     while True:
         user_input = input(prompt).strip()
         if user_input.lower() == 'inv':
@@ -27,19 +29,21 @@ def choice(prompt):
             quit()
         return user_input.lower()
     
-def pergunta(escolha_acao_dialogo: str, situação: list, opcoes: list):
+def pergunta(tipo: str, situação: list, opcoes: list):
+    """Separa e printa as escolhas por tipo, situação e suas opções de escolha"""
     while True:
-        cabecalho(escolha_acao_dialogo)
+        cabecalho(tipo)
         situação_formatada = ', '.join(situação)
-        print(f"situação: {situação_formatada}, DIGITE o que você irá fazer.")
+        print(f"{situação_formatada}")
+        print(f"\nDIGITE o que você irá fazer.")
         for opcao in opcoes:
             print(f"> '{opcao}'")
     
-        escolha = choice(">> ")
+        escolha = choice(f"{C.MAGENTA}>>{C.NORMAL} ")
         if escolha in opcoes:  
             print("\n")
             return escolha.strip().lower().replace(' ', '')
 
         else:
-            print("tente novamente")
+            print(f"{C.RED}tente novamente{C.NORMAL}\n")
             continue

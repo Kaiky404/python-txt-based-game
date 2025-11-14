@@ -11,9 +11,12 @@ def guardaroupa():
     while True:
         evento.cabecalho('narrador')
         print("Você está em frente ao seu guarda-roupa")
-        escolhaGuardaroupa = helpers.pergunta('ação', ['Uma forma de abrir a porta'], ['abrir porta', 'voltar'])
+        escolhaGuardaroupa = helpers.pergunta(
+            'ação',
+            [f'Você pode {C.YELLOW}abrir{C.NORMAL} seu guarda-roupa'],
+            ['abrir', 'voltar'])
 
-        if escolhaGuardaroupa == "abrirporta":
+        if escolhaGuardaroupa == "abrir":
             if LUGARES_VASCULHADOS['casa']['guardaroupa']['portaquebrada']:
                 evento.cabecalho('narrador')
                 print(f"Você desvia do que era a porta do guarda-roupa, mas agora é uma {C.YELLOW}pilha de madeira{C.NORMAL}, e olha para dentro dele.")
@@ -37,7 +40,7 @@ def guardaroupa():
                 
                 escolhaRoupa = helpers.pergunta(
                     'pergunta',
-                    ['No guarda-roupa tem algumas roupas que você pode pegar'],
+                    ['Você pode pegar algumas roupas de dentro do guarda-roupa, qual/quais você vai pegar?'],
                     ['regata', 'blazer', 'tabua', 'voltar'] )
 
                 if escolhaRoupa == "regata":
