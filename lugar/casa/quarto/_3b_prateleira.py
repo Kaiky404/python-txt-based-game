@@ -1,5 +1,6 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
+from .... import visuals
 
 @helpers.retry_on_inventory
 def prateleira():
@@ -11,6 +12,7 @@ def prateleira():
     while True:
         evento.cabecalho('narrador')
         print("Enquanto você passa a mão por alguns livros e outros objetos que você guardou lá, você nota alguns interessantes.")
+        print(visuals.prateleiras)
         print(f"Na prateleira vermelha, há uma {C.YELLOW}chave com uma pena presa{C.NORMAL} e uma {C.YELLOW}prisilía de cabelo{C.NORMAL}.")
         print("Porém essa prateleira é muito alta para alcançá-la normalmente, então você vai e pega um banquinho de madeira para alcançá-la.")
 
@@ -28,7 +30,10 @@ def prateleira():
                 LUGARES_VASCULHADOS['casa']['prateleira']['chave_pega'] = True
                 evento.adicionar(player.char, "chavecompena")
 
-            escolhaUsarbanquinho = helpers.pergunta('escolha', ['o grampo de cabelo'], ['pegar', 'nao pegar'])
+            escolhaUsarbanquinho = helpers.pergunta(
+                'escolha',
+                ['Você pode tentar pegar o grampo de cabelo'],
+                ['pegar', 'nao pegar'])
 
             if escolhaUsarbanquinho == "pegar":
                 if LUGARES_VASCULHADOS['casa']['prateleira']['grampo_pego']:

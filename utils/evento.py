@@ -38,6 +38,7 @@ def cura(char, qtd, razao):
     cabecalho('cura')
     ATRIBUTOS['vida'] += qtd
     if ATRIBUTOS['vida'] >= 100:
+        print("Sua vida já está cheia.")
         ATRIBUTOS['vida'] = 100
     print(f"{char} curou {qtd} vida por {razao}.")
     print(f"{char} está com {ATRIBUTOS['vida']} de vida.")

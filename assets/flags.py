@@ -54,7 +54,7 @@ LUGARES_VASCULHADOS = {
             "atrair": {
                 "casca": {
                     "usado": False,
-                    "arremesado": False,
+                    "arremessado": False,
                     "largado": False
                 },
                 "pedra": {

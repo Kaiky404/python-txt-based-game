@@ -2,18 +2,19 @@ from ....core import evento, helpers, C, LUGARES_VASCULHADOS
 from .... import player
 from ._3b_trocar import trocar
 from ._3a_ajustar import ajustar
+from .... import visuals
 
 def cerca():
     entrou = False
 
     while True:
-
         if not entrou:
             evento.cabecalho('narrador')
             print(f"E então {player.char} decide checar a cerca\n"
-                  f"{player.char} atravessa o paiol e logo mais descobre onde estava quebrado na cerca.\n"
-                  f"Determinado a ajudar seu pai com o trabalho na fazenda, ele pensa em algumas formas de arrumar a cerca.")
-            entrou = True
+                  f"{player.char} atravessa o paiol e logo mais descobre onde estava quebrado na cerca.\n")
+        print("\nDeterminado a ajudar seu pai com o trabalho na fazenda, ele pensa em algumas formas de arrumar a cerca.") 
+        print(visuals.cerca)
+        entrou = True
 
         situação = [f"{player.char} pode tentar"]
         opção = []
@@ -54,6 +55,6 @@ def cerca():
             LUGARES_VASCULHADOS['fazenda']['cerca']['ajustar']
             ):
             LUGARES_VASCULHADOS['fazenda']['cerca']['arrumada'] = True
-            evento.head('info')
+            evento.cabecalho('info')
             print(f"Depois de trocar e ajustar a cerca no lugar, {player.char} decide fazer outra coisa.")
             return

@@ -2,6 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from ._3a_guardaroupa import guardaroupa
 from ._3b_prateleira import prateleira
 from ._3c_cama import cama
+from .... import visuals
 
 @helpers.retry_on_inventory
 def quarto():
@@ -12,6 +13,8 @@ def quarto():
             return
 
         evento.cabecalho('narrador')
+        print("Você decide olhar seu quarto mais a fundo")
+        print(visuals.quarto)
         print("Enquanto você olha ao redor do seu quarto...")
         escolhaQuarto = helpers.pergunta(
             "escolha",

@@ -6,7 +6,6 @@ from ..foradecasa.floresta._1_floresta import floresta
 def rua():
     from ..casa.quarto._1_escada import escada
     while True:
-        evento.cabecalho('narrador')
         print("Você está fora de casa.")
 
         caminho = helpers.pergunta(
@@ -24,7 +23,8 @@ def rua():
             floresta()
         
         elif caminho == "casa":
-            escada()
+            result = escada()
+            return result
 
         else:
             helpers.erro()

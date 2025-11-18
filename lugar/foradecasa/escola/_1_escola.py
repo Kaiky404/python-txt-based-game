@@ -1,22 +1,27 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._1a_materia import materia
+from .... import visuals
 
 def escola():
     entrou = False
     while True:
         if not entrou:
             evento.cabecalho('narrador')
+            print(f"Você caminha em direção à escola local, cumprimentando alguns conhecidos pelo caminho.\n")
+            print(visuals.escola)
             print(
-                f"Você caminha em direção à escola local, cumprimentando alguns conhecidos pelo caminho.\n"
                 "Entrando no perímetro dela na exata hora que o guardinha está fechando o portão\n"
                 f"parece que você só vai poder sair quando participar de todas as aulas\n"
                 f"Entrando no edifício, você não sabe em qual sala entrar. Mas se sentindo confiante nessa matéria, decide entrar na aula de...")
             entrou = True
+        
+        print("Você não pode sair até terminar todas as aulas")
+        print(visuals.salas)
 
         escolhaMateria = helpers.pergunta(
             'escolha',
-            ["Entrar na aula de 'Geografia', 'Física', 'Português', 'História' ou 'Biologia'"],
+            ["Você pode entrar na aula de 'Geografia', 'Física', 'Português', 'História' ou 'Biologia'"],
             ['geografia', 'fisica', 'portugues', 'historia', 'biologia', 'sair']
             )
 
@@ -55,12 +60,16 @@ def escola():
             else:
                 LUGARES_VASCULHADOS['escola']['materia']['bio'] = True
         elif escolhaMateria == 'sair':
-            pass
-
+            continue
+        else:
+            continue
+        
+        if LUGARES_VASCULHADOS['escola']['completada']:
+            return
         print(f"Decidido então a entrar na aula de {escolhaMateria}, pensa que essa é também uma boa oportunidade de descansar um pouco.")
-        escolhaEscola = helpers.pergunta('escolha', ['a opção de prestar atenção na aula ou a de descansar'], ['vou estudar', 'vou descansar'])
+        escolhaEscola = helpers.pergunta('escolha', ['Você pode prestar atenção na aula ou cochilar na carteira'], ['estudar', 'cochilar'])
 
-        if escolhaEscola == 'vouestudar':
+        if escolhaEscola == 'estudar':
             evento.cabecalho('narrador')
             print(
                 "Pensando no futuro e na necessidade de ficar mais inteligente, Você decide focar no que o professor falando e passando na lousa\n"
@@ -68,12 +77,13 @@ def escola():
                 )
             materia(escolhaMateria)
 
-        elif escolhaEscola == 'voudescansar':
+        elif escolhaEscola == 'cochilar':
+            print(visuals.dormir)
             evento.cura(player.char, 5, 'descansar durante a aula')
             continue
         
         else:
-            evento.erro()
+            print(f"{C.RED}Tente novamente{C.NORMAL}")
             continue
         
         if (

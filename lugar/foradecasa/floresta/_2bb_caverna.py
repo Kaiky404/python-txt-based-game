@@ -1,5 +1,6 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
+from .... import visuals
 
 def caverna():
     entrou = False
@@ -10,6 +11,7 @@ def caverna():
             print(f"{player.char} entra na caverna e logo dá de cara com um urso!.\n"
                 f"Depois de molhar suas calças, o urso sente o cheiro e vai em sua direção!\n")
             entrou = True
+        print(visuals.urso)
 
         situação = [f"{player.char} pode tentar"]
         opções = []
@@ -28,10 +30,8 @@ def caverna():
         if not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             situação.append("pegar a mochila que o urso estava guardando")
             opções.append("mochila")
-
         else:
-            situação.append("você não consegue pegar a mochila por já a ter pego ou porque tem um urso na sua frente")
-
+            print("você pode ver que o urso protege algo")
 
         escolhaCaverna = helpers.pergunta(
             'escolha',
@@ -103,6 +103,7 @@ def caverna():
                 helpers.erro()
 
         elif escolhaCaverna == 'mochila' and not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
+            print(visuals.mochila)
             evento.cabecalho('narrador')
             print(f"Com o urso fora de seu caminho, {player.char} pega uma mochila empoirada do chão")
             evento.adicionar(player.char, 'grampo')

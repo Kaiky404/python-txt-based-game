@@ -10,7 +10,7 @@ def explorar():
         if not entrou:
             evento.cabecalho('narrador')
             print(f"{player.char} decide explorar a floresta.\n"
-                f"E depois de caminha por um tempo ele se encontra numa encruzilhada.\n"
+                f"E depois de caminhar por um tempo você se encontra numa encruzilhada.\n"
                 f"À esquerda uma montanha de pedra, e à direira um caminho atravessando um rio.")
             entrou = True
         
@@ -51,7 +51,7 @@ def explorar():
             pass
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
         
         if (
             LUGARES_VASCULHADOS['floresta']['montanha']['vasculhada'] and

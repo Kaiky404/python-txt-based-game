@@ -1,16 +1,24 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
+from .... import visuals
 
 @helpers.retry_on_inventory
 def guardaroupa():
     if LUGARES_VASCULHADOS['casa']['guardaroupa']['vasculhado']:
         evento.cabecalho('info')
+        print(visuals.guardaroupa_quebrado)
         print("Você já procurou no guarda-roupa e encontrou tudo que havia de interessante.")
         return
 
     while True:
         evento.cabecalho('narrador')
         print("Você está em frente ao seu guarda-roupa")
+        
+        if not LUGARES_VASCULHADOS['casa']['guardaroupa']['portaquebrada']:
+            print(visuals.guardaroupa)
+        else:
+            print(visuals.guardaroupa_quebrado)
+
         escolhaGuardaroupa = helpers.pergunta(
             'ação',
             [f'Você pode {C.YELLOW}abrir{C.NORMAL} seu guarda-roupa'],
@@ -19,12 +27,14 @@ def guardaroupa():
         if escolhaGuardaroupa == "abrir":
             if LUGARES_VASCULHADOS['casa']['guardaroupa']['portaquebrada']:
                 evento.cabecalho('narrador')
-                print(f"Você desvia do que era a porta do guarda-roupa, mas agora é uma {C.YELLOW}pilha de madeira{C.NORMAL}, e olha para dentro dele.")
+                print(f"Você desvia do que era a porta do guarda-roupa — agora reduzida a uma {C.YELLOW}pilha de madeira{C.NORMAL}.")
+                print(visuals.guardaroupa_quebrado)
 
             else:
                 LUGARES_VASCULHADOS['casa']['guardaroupa']['portaquebrada'] = True
                 evento.cabecalho('narrador')
-                print(f"Você força a porta do guarda-roupa, quebra ela em uma {C.YELLOW}pilha de madeira{C.NORMAL}, mas o abre.")
+                print(f"Você força a porta do guarda-roupa e quebra ela em uma {C.YELLOW}pilha de madeira{C.NORMAL} — agora reduzida a uma {C.YELLOW}pilha de madeira{C.NORMAL}.")
+                print(visuals.guardaroupa_quebrado)
             print(f"Dentro do guarda-roupa há uma {C.YELLOW}coleção de roupas velhas e empoeiradas{C.NORMAL}.")
 
             while True:
@@ -47,36 +57,36 @@ def guardaroupa():
                     if LUGARES_VASCULHADOS['casa']['guardaroupa']['regata_pega']:
                         evento.cabecalho('info')
                         print("Você já pegou a regata do guarda-roupa.")
-                        return
+                        break
                     
                     LUGARES_VASCULHADOS['casa']['guardaroupa']['regata_pega'] = True
                     evento.adicionar(player.char, "regata")
-                    return
+                    break
                 
                 elif escolhaRoupa == "blazer":
                     if LUGARES_VASCULHADOS['casa']['guardaroupa']['blazer_pego']:
                         evento.cabecalho('info')
                         print("Você já pegou o blazer do guarda-roupa.")
-                        return
+                        break
                     
                     LUGARES_VASCULHADOS['casa']['guardaroupa']['blazer_pego'] = True
                     evento.adicionar(player.char, "blazer")
-                    return
+                    break
                 
                 elif escolhaRoupa == "tabua":
                     if LUGARES_VASCULHADOS['casa']['guardaroupa']['tabua_pega']:
                         evento.cabecalho('info')
                         print("Você já pegou a tabua da pilha de madeira do guarda-roupa.")
-                        return
+                        break
 
                     LUGARES_VASCULHADOS['casa']['guardaroupa']['tabua_pega'] = True
                     evento.adicionar(player.char, "tabua")
-                    return
+                    break
 
                 elif escolhaRoupa == "voltar":
                     evento.cabecalho('narrador')
                     print("Você saiu do guarda-roupa sem pegar nenhuma roupa.")
-                    return
+                    break
                 
                 else:
                     helpers.erro

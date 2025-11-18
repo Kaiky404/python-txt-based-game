@@ -2,6 +2,7 @@ from ....core import evento, helpers, C, LUGARES_VASCULHADOS
 from .... import player
 from ._2a_atrair import atrair
 from ._2b_parede import parede
+from .... import visuals
 
 def galinheiro():
     entrou = False
@@ -42,7 +43,8 @@ def galinheiro():
 
         if escolhaGalinheiro in ('galinha', 'caixa'):
 
-            if not LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou']: 
+            if not LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou']:
+                print(visuals.galinha)
                 evento.cabecalho('narrador')
                 print(f"E então você decide tentar tirar a galinha de cima do ninho")
                 print(f"Ele pensa em algumas alternativas como tentar empurrar a galinha ou atraí-la com algo")
@@ -61,7 +63,7 @@ def galinheiro():
                     break
 
                 else:
-                    helpers.erro()
+                    print("Tente novamente")
             else:
                 escolhaCaixa = helpers.pergunta(
                 'ação',
@@ -69,6 +71,7 @@ def galinheiro():
                 ['abrir', 'sair']
                 )
 
+                print(visuals.caixa)
                 evento.cabecalho('narrador')
                 if escolhaCaixa == 'abrir':
                     if LUGARES_VASCULHADOS.get('prateleira', {}).get('chave_pega'):

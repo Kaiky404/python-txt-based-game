@@ -3,6 +3,7 @@ from ._2a_predio import predio
 from ._2b_parquinho import parquinho
 from ._2c_estabulo import estabulo
 from .... import player
+from .... import visuals
 
 @helpers.retry_on_inventory
 def janela():
@@ -11,9 +12,11 @@ def janela():
         print("Você já olhou todos os pontos interessantes da janela.")
         return
     
+    
     evento.cabecalho('narrador')
-    print("Você se encosta no peitoril da janela")
     while True:
+        print("Você se encosta no peitoril da janela")
+        print(visuals.janela)
         evento.cabecalho('narrador')
         print(f"Em frente à sua janela, três pontos chamam sua atenção...")
         LookChoice = helpers.pergunta(
@@ -35,7 +38,7 @@ def janela():
             return
         
         else:
-            evento.erro()
+            print("Tente novamente!\n")
         
         if (
             LUGARES_VASCULHADOS['casa']['janela']['predio_vasculhado'] and

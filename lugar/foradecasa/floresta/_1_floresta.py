@@ -1,6 +1,7 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2_explorar import explorar
+from .... import visuals
 
 def floresta():
     entrou = False
@@ -15,6 +16,8 @@ def floresta():
                     f"Ao chegar, {player.char} se aventura entre as árvores, ouvindo os sons da natureza ao seu redor.\n"
                     f"O tempo passa e {player.char} derrepente se vê perdido na floresta.")
                 entrou = True
+            
+            print(visuals.floresta)
 
             situação = [f"{player.char} se perdeu na floresta e pode tentar"]
             opções = []

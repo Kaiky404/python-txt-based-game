@@ -1,5 +1,6 @@
 from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
+from .... import visuals
 
 @helpers.retry_on_inventory
 def cama():
@@ -9,6 +10,7 @@ def cama():
         return
     
     while True:
+        print(visuals.cama)
         evento.cabecalho('narrador')
         print(F"Quando você move o pescoço para ver debaixo da cama, {C.RED}seu pescoço dói{C.NORMAL}. Passando a mão sobre ele, {C.RED}você nota um hematoma{C.NORMAL}. Tocar nele faz a dor piorar.")
         
@@ -20,6 +22,8 @@ def cama():
         if escolhaCama == "olhar":
             evento.cabecalho('narrador')
             print("Quando você move a cabeça para ver debaixo da cama, seu pescoço dói, mas você ignora.")
+
+            player.add('coragem', 1)
 
             evento.dano(player.char, 10, "forçar o pescoço apesar da dor")
 
@@ -35,6 +39,7 @@ def cama():
                 if escolhaCoisaescura == "tentar":
                     evento.cabecalho('narrador')
                     print("Quando você move a cabeça mais perto, seu pescoço dói mais.")
+                    player.add('coragem', 1)
 
                     evento.dano(player.char, 20, "forçar o pescoço novamente apesar da dor")
 

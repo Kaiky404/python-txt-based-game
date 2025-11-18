@@ -2,6 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2_galinheiro import galinheiro
 from ._3_cerca import cerca
+from .... import visuals
 
 def fazenda():
     entrou = False
@@ -21,7 +22,7 @@ def fazenda():
             situação.append(f"consertar a cerca dos caneiros")
             opções.append(f"cerca")
         else:
-            situação.append(f"já viu a parede")
+            situação.append(f"já consertou a cerca")
 
         situação.append(f"ou ir embora")
         opções.append(f"sair")
@@ -32,6 +33,8 @@ def fazenda():
                   f"Ao chegar, você pode ver os campos verdes e os pastos cheios de gado.\n"
                   f"Parado em frente a um paiol, você decide o que fazer.")
             entrou = True
+        
+        print(visuals.fazenda)
         
         escolhaFazenda = helpers.pergunta(
             'escolha',
