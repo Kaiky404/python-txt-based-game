@@ -67,7 +67,7 @@ def prateleira():
                 return
             
             else:
-                helpers.erro()
+                print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaPrateleira == "grampo":
             if LUGARES_VASCULHADOS['casa']['prateleira']['grampo_pego']:
@@ -115,7 +115,7 @@ def prateleira():
                 return
             
             else:
-                helpers.erro()
+                print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaPrateleira == "voltar":
             evento.cabecalho('narrador')
@@ -123,4 +123,4 @@ def prateleira():
             return
         
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
