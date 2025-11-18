@@ -89,7 +89,7 @@ def guardaroupa():
                     break
                 
                 else:
-                    helpers.erro
+                    print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaGuardaroupa == "voltar":
             evento.cabecalho('narrador')
@@ -97,4 +97,4 @@ def guardaroupa():
             return
         
         else:
-            helpers.erro
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")

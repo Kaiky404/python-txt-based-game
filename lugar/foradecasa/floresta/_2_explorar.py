@@ -3,6 +3,7 @@ from .... import player
 from ._2a_montanha import montanha
 from ._2b_rio import rio
 
+@helpers.retry_on_inventory
 def explorar():
     entrou = False
 

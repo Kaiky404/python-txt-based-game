@@ -4,6 +4,7 @@ from ._2_galinheiro import galinheiro
 from ._3_cerca import cerca
 from .... import visuals
 
+@helpers.retry_on_inventory
 def fazenda():
     entrou = False
 
@@ -49,4 +50,4 @@ def fazenda():
         elif escolhaFazenda == 'sair':
             return
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")

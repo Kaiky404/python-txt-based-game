@@ -2,7 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from ._2bb_caverna import caverna
 
-
+@helpers.retry_on_inventory
 def rio():
     entrou = False
 
@@ -40,4 +40,4 @@ def rio():
             pass
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")

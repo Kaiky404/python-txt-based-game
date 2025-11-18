@@ -3,6 +3,7 @@ from .... import player
 from ._1a_materia import materia
 from .... import visuals
 
+@helpers.retry_on_inventory
 def escola():
     entrou = False
     while True:

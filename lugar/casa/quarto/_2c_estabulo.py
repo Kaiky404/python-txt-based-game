@@ -2,6 +2,7 @@ from ....core import evento, LUGARES_VASCULHADOS, C, helpers, skill_check
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def estabulo():
     while True:
         print(visuals.estabulo)

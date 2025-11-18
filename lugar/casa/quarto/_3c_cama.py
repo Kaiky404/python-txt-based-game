@@ -61,7 +61,7 @@ def cama():
                     return
                 
                 else:
-                    helpers.erro()
+                    print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaCama == "sair":
             evento.cabecalho('narrador')
@@ -69,4 +69,4 @@ def cama():
             return
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")

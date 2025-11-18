@@ -2,6 +2,7 @@ from ....core import evento, helpers, C, LUGARES_VASCULHADOS
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def atrair():
     entrou = False
 
@@ -76,7 +77,7 @@ def atrair():
                     LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['casca']['largado'] = True
 
                 else:
-                    helpers.erro()
+                    print(f"{C.RED}Tente novamente.{C.NORMAL}")
                 
                 if (LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['casca']['arremessado'] or
                     LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['casca']['largado']):
@@ -106,7 +107,7 @@ def atrair():
                     LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['pedra']['largado'] = True
 
                 else:
-                    helpers.erro()
+                    print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
                 if (LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['pedra']['arremessado'] or
                     LUGARES_VASCULHADOS['fazenda']['galinheiro']['atrair']['pedra']['largado']):

@@ -2,6 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def caverna():
     entrou = False
 
@@ -100,7 +101,7 @@ def caverna():
                     f"Mas antes de sair, o urso que já estava em sua frente lhe dá uma patada.")
                 evento.dano(player.char, 20, 'tomar uma patada do urso')
             else:
-                helpers.erro()
+                print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaCaverna == 'mochila' and not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and LUGARES_VASCULHADOS['floresta']['rio']['caverna']['urso_morto']:
             print(visuals.mochila)
@@ -118,7 +119,7 @@ def caverna():
             return
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         if (
             LUGARES_VASCULHADOS['floresta']['rio']['caverna']['item_pego'] and

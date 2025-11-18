@@ -4,6 +4,7 @@ from ._3b_trocar import trocar
 from ._3a_ajustar import ajustar
 from .... import visuals
 
+@helpers.retry_on_inventory
 def cerca():
     entrou = False
 
@@ -48,7 +49,7 @@ def cerca():
         elif escolhaCerca == 'sair':
             return
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
         
         if (
             LUGARES_VASCULHADOS['fazenda']['cerca']['trocar'] and

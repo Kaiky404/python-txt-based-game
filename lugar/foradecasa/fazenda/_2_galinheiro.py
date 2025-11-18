@@ -4,6 +4,7 @@ from ._2a_atrair import atrair
 from ._2b_parede import parede
 from .... import visuals
 
+@helpers.retry_on_inventory
 def galinheiro():
     entrou = False
 
@@ -86,7 +87,7 @@ def galinheiro():
                     break
 
                 else:
-                    helpers.erro()
+                    print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         elif escolhaGalinheiro == 'parede' and not LUGARES_VASCULHADOS['fazenda']['galinheiro']['rabisco_lido']:
             parede()
@@ -95,7 +96,7 @@ def galinheiro():
             print(f"{player.char} decide sair do galinheiro e voltar para perto do paiol.")
             return
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         if (
             LUGARES_VASCULHADOS['fazenda']['galinheiro']['pistola_pega'] and

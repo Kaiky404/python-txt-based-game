@@ -3,6 +3,7 @@ from ..foradecasa.escola._1_escola import escola
 from ..foradecasa.fazenda._1_fazenda import fazenda
 from ..foradecasa.floresta._1_floresta import floresta
 
+@helpers.retry_on_inventory
 def rua():
     from ..casa.quarto._1_escada import escada
     while True:
@@ -27,5 +28,5 @@ def rua():
             return result
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
         

@@ -2,6 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def montanha():
     while True:
         print(visuals.montanha)

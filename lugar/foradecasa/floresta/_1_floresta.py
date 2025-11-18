@@ -3,6 +3,7 @@ from .... import player
 from ._2_explorar import explorar
 from .... import visuals
 
+@helpers.retry_on_inventory
 def floresta():
     entrou = False
 
@@ -44,7 +45,7 @@ def floresta():
                 pass
 
             else:
-                helpers.erro()
+                print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
         else:
             print(f"{player.char} já se perdeu na floresta e achou o caminho de volta, ele não quer mais ir lá.")

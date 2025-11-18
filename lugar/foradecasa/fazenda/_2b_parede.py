@@ -2,6 +2,7 @@ from ....core import evento, helpers, C, LUGARES_VASCULHADOS, MOCHILA
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def parede():
     entrou = False
 

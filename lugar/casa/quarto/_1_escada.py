@@ -3,6 +3,7 @@ from .... import player
 from ...rua._1_rua import rua
 from .... import visuals
 
+@helpers.retry_on_inventory
 def escada():
     if not LUGARES_VASCULHADOS['casa']['bronca_do_pai']:
         print("Quando você está para sair de casa, alguém grita com você.\n")
@@ -37,7 +38,7 @@ def escada():
             player.add('coragem', -1)
 
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")
 
     escolhaEscada = helpers.pergunta(
         'escolha',

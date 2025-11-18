@@ -2,6 +2,7 @@ from ....core import evento, helpers, C
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def materia(materia):
     while True:
         if materia == 'geografia':
@@ -137,4 +138,4 @@ def materia(materia):
                 return
         
         else:
-            helpers.erro()
+            print(f"{C.RED}Tente novamente.{C.NORMAL}")

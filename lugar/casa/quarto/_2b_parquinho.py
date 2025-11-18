@@ -2,6 +2,7 @@ from ....core import evento, helpers, LUGARES_VASCULHADOS, C, skill_check
 from .... import player
 from .... import visuals
 
+@helpers.retry_on_inventory
 def parquinho():
     while True:
         if LUGARES_VASCULHADOS['casa']['janela']['parquinho_vasculhado']:
