@@ -32,8 +32,8 @@ def prateleira():
 
             escolhaUsarbanquinho = helpers.pergunta(
                 'escolha',
-                ['Você pode tentar pegar o grampo de cabelo'],
-                ['pegar', 'nao pegar'])
+                [f'Você pode tentar {C.YELLOW}pegar{C.NORMAL} o grampo de cabelo ou sair'],
+                ['pegar', 'sair'])
 
             if escolhaUsarbanquinho == "pegar":
                 if LUGARES_VASCULHADOS['casa']['prateleira']['grampo_pego']:
@@ -46,6 +46,8 @@ def prateleira():
                 
                 evento.cabecalho('narrador')
                 print("Mas quando você tenta descer, o banquinho quebra e você cai no chão.")
+
+                player.add('inteligência', 1)
 
                 evento.dano(player.char, 15, "cair do banquinho")
 
@@ -61,7 +63,7 @@ def prateleira():
                     print("Você já pegou todos os itens interessantes da prateleira.")
                 return
             
-            elif escolhaUsarbanquinho == "naopegar":
+            elif escolhaUsarbanquinho == "sair":
                 evento.cabecalho('narrador')
                 print("Você decide deixar o grampo onde está.")
                 return
@@ -94,6 +96,8 @@ def prateleira():
 
                 evento.cabecalho('narrador')
                 print("Mas quando você tenta descer, o banquinho quebra e você cai no chão.")
+
+                player.add('inteligência', 1)
 
                 evento.dano(player.char, 15, "cair do banquinho")
 

@@ -12,16 +12,17 @@ def estabulo():
             return
         
         evento.cabecalho('narrador')
-        print(f"Você pode ver {C.YELLOW}uma garota de cabelos vermelhos{C.NORMAL} acena para você")
+        print(f"Você pode ver {C.YELLOW}uma garota ruiva{C.NORMAL} acenando para você")
         escolha = helpers.pergunta(
             "ação",
-            ["Você pode acenar de volta ou só ignorar"],
-            ["acenar", "ignorar"])
+            [f"Você pode {C.YELLOW}acenar{C.NORMAL} de volta (coragem: 2), {C.YELLOW}ignorar{C.NORMAL} ela (penalidade), ou voltar quando tiver mais confiante"],
+            ["acenar", "ignorar", "sair"])
 
         if escolha == 'acenar':
             LUGARES_VASCULHADOS['casa']['janela']['estabulo_vasculhado'] = True
+            
             evento.cabecalho('narrador')
-            if skill_check(player.get('coragem'), 2):
+            if skill_check('coragem', player.get('coragem'), 2):
                 print(visuals.estabulo_acenando)
                 print(
                     "Sorrindo, você acena de volta para a garota.\n"
@@ -44,6 +45,11 @@ def estabulo():
             player.add('carisma', -1)
             return
         
+        elif escolha == 'sair':
+            evento.cabecalho('narrador')
+            print("Você decide voltar depois que estiver mais confiante\n")
+            return
+        
         else:
-            evento.erro()
+            print(f"{C.RED}Tente novamente{C.NORMAL}")
             continue

@@ -59,7 +59,7 @@ def caverna():
             )
 
             if escolhaEstrategia == 'mirar':
-                if player.get('força') >= 3 and player.get('coragem') >= 3:
+                if evento.skill_check('coragem', player.get('coragem'), 3) and evento.skill_check('força', player.get('força'), 3):
                     player.add('força', 1)
                     player.add('coragem', 1)
                     evento.cabecalho('narrador')
@@ -77,7 +77,7 @@ def caverna():
                     evento.dano(player.char, 20, 'tomar uma patada do urso')
                     
             elif escolhaEstrategia == 'ambiente':
-                if player.get('inteligência') >= 3 and player.get('coragem') >= 3:
+                if evento.skill_check('coragem', player.get('coragem'), 3) and evento.skill_check('inteligência', player.get('inteligência'), 3):
                     player.add('inteligência', 1)
                     player.add('coragem', 1)
                     evento.cabecalho('narrador')

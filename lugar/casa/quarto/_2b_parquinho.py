@@ -17,8 +17,8 @@ def parquinho():
         
         escolha = helpers.pergunta(
             "ação",
-            ["Você pode tentar intervir ou só ignorar"],
-            ["intervir", "ignorar"])
+            [F"Você pode tentar {C.YELLOW}intervir{C.NORMAL} (força: 2), {C.YELLOW}ignorar{C.NORMAL} a cena (penalidade) ou voltar quando for mais forte"],
+            ["intervir", "ignorar", "sair"])
 
         if escolha == 'intervir':
             LUGARES_VASCULHADOS['casa']['janela']['parquinho_vasculhado'] = True
@@ -28,7 +28,7 @@ def parquinho():
                 "Você pula da sua janela e corre em direção ao parquinho enferrujado\n"
                 "Chegando lá, você tenta impedir as crianças de praticarem bullying com a criança de óculos.")
 
-            if skill_check(player.get('força'), 2):
+            if skill_check('força', player.get('força'), 2):
                 print(visuals.parquinho_garoto_salvo)
                 print(
                     "Com toda a força que tem, você dá uma lição no grupo de crianças e salva a criança de óculos.\n"
@@ -45,14 +45,20 @@ def parquinho():
 
         elif escolha == 'ignorar':
             LUGARES_VASCULHADOS['casa']['janela']['parquinho_vasculhado'] = True
+
             print(visuals.parquinho_bullying)
             evento.cabecalho('narrador')
             print("Você decide ignorar a situação, e o grupo de crianças continuaram a praticar bullying até quebrarem o óculos do garoto.")
             player.add('coragem', -1)
             return
         
+        elif escolha == 'sair':
+            evento.cabecalho('narrador')
+            print("Você decide voltar depois que estiver mais forte\n")
+            return
+        
         else:
-            evento.erro()
+            print(f"{C.RED}Tente novamente{C.NORMAL}")
             continue
             
                 

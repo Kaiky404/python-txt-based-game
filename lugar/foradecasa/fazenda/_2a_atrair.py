@@ -148,30 +148,5 @@ def atrair():
                 print(f"{C.RED}Tente novamente.{C.NORMAL}")
             
         if sucesso:
-            evento.cabecalho('narrador')
-            print(f"{player.char} consegue afastar a galinha do ninho e o que eram para ser ovos, é na verdade uma caixa trancada")
             LUGARES_VASCULHADOS['fazenda']['galinheiro']['galinha_vazou'] = True
-            escolhaCaixa = helpers.pergunta(
-                'ação',
-                [f'Você tenta abrir a caixa?'],
-                ['abrir', 'sair']
-            )
-
-            evento.cabecalho('narrador')
-            if escolhaCaixa == 'abrir':
-                if LUGARES_VASCULHADOS.get('prateleira', {}).get('chave_pega'):
-                    print(f"{player.char} abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
-                    evento.adicionar(player.char, 'pistola')
-                    LUGARES_VASCULHADOS['fazenda']['galinheiro']['pistola_pega'] = True
-                    return
-                print(f"{player.char} não consegue abrir a caixa já que não tem a chave correspondente.")
-                break
-
-            elif escolhaCaixa == 'sair':
-                print(f"{player.char} decide largar a caixa lá por agora.")
-                return
-            else:
-                print(f"{C.RED}Tente novamente.{C.NORMAL}")
-
-
-
+            return

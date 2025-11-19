@@ -17,8 +17,8 @@ def predio():
         
         escolha = helpers.pergunta(
             "ação",
-            [f"Você pode tentar intervir ou só ignorar"],
-            ["intervir", "ignorar"])
+            [f"Você pode tentar {C.YELLOW}intervir{C.NORMAL} (força: 2), {C.YELLOW}ignorar{C.NORMAL} (penalidade), ou voltar quando tiver mais forte"],
+            ["intervir", "ignorar", "sair"])
 
         if escolha == 'intervir':
             LUGARES_VASCULHADOS['casa']['janela']['predio_vasculhado'] = True
@@ -27,7 +27,7 @@ def predio():
                 "Você pula da janela em corre em direção ao prédio grande\n"
                 "Chegando lá, você tenta impedir os adolecentes de continuarem a maltratar o gato.")
                    
-            if skill_check(player.get('força'), 2):
+            if skill_check('força', player.get('força'), 2):
                 print(visuals.predio_gato_salvo)
                 print(
                     "Com toda a força que tem, você dá uma lição nos adolecente e salva o gatinho."
@@ -50,6 +50,11 @@ def predio():
             player.add('coragem', -1)
             return
         
+        elif escolha == 'sair':
+            evento.cabecalho('narrador')
+            print("Você decide voltar depois que estiver mais forte\n")
+            return
+        
         else:
-            print("Tente novamente")
+            print(f"{C.RED}Tente novamente{C.NORMAL}")
             continue

@@ -18,7 +18,7 @@ def rio():
         opções = []
 
         if not LUGARES_VASCULHADOS['floresta']['rio']['caverna']['vasculhada']:
-            situação.append("entrar na caverna")
+            situação.append(f"entrar na caverna (um vez dentro, {C.RED}vai ser impossível sair{C.NORMAL} sem ter o necessário (coragem: 3 e força: 3))")
             opções.append("caverna")
 
         else:

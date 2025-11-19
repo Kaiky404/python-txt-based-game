@@ -39,6 +39,7 @@ def cama():
                 if escolhaCoisaescura == "tentar":
                     evento.cabecalho('narrador')
                     print("Quando você move a cabeça mais perto, seu pescoço dói mais.")
+                    
                     player.add('coragem', 1)
 
                     evento.dano(player.char, 20, "forçar o pescoço novamente apesar da dor")

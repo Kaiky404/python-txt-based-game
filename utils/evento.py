@@ -13,9 +13,10 @@ def cabecalho(type: str):
 
         LAST_LOG_HEAD = type.upper()
 
-def skill_check(tenho, preciso):
+def skill_check(atributo, tem, precisa):
     """Checa se o atributo que o personagem tem é o bastante para o que for preciso"""
-    if tenho >= preciso:
+    print(f"Você tem {tem} de {atributo} e precisa de {precisa}")
+    if tem >= precisa:
         return True
     else:
         return False

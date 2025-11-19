@@ -16,7 +16,7 @@ def galinheiro():
             print(f"E então você decide checar o galinheiro")
             entrou = True
         
-        print(f"Ele enfia sua cabeça dentro do galinheiro, conseguindo ver algumas coisas...")
+        print(f"Você enfia sua cabeça dentro do galinheiro, conseguindo ver algumas coisas...")
 
         situação = [f"Dentro do galinheiro, você pode ver"]
         ação = []
@@ -75,7 +75,7 @@ def galinheiro():
                 print(visuals.caixa)
                 evento.cabecalho('narrador')
                 if escolhaCaixa == 'abrir':
-                    if LUGARES_VASCULHADOS.get('prateleira', {}).get('chave_pega'):
+                    if LUGARES_VASCULHADOS['casa']['prateleira']['chave_pega']:
                         print(f"Você abre a caixa com a chave que havia encontrado e dentro dela encontra uma Pistola.")
                         evento.adicionar(player.char, 'pistola')
                         LUGARES_VASCULHADOS['fazenda']['galinheiro']['pistola_pega'] = True
